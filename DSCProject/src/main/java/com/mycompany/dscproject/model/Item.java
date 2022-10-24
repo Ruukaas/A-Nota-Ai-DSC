@@ -4,12 +4,15 @@
  */
 package com.mycompany.dscproject.model;
 
+import jakarta.persistence.CascadeType;
 import java.io.Serializable;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
@@ -25,17 +28,24 @@ public class Item implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
     
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name="produto_ID", referencedColumnName="codigo")
+    
     private Produto produto;
+    
     private int quantidade;
     
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name="valorId", referencedColumnName="codigo")
+
     private Preço valorUnitario;
     
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name="localDeVendoID", referencedColumnName="codigo")
     private Loja localDeVenda;
     
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)        
+    @JoinColumn(name="notaFiscalID", referencedColumnName="codigo")
     private NotaFiscal notaFiscal;
 
 

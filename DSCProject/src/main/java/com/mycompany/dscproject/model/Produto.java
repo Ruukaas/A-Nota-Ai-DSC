@@ -8,9 +8,13 @@ import java.io.Serializable;
 import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 
 /**
@@ -26,11 +30,28 @@ public class Produto implements Serializable {
     private int codigo;
     private String nome;
     
-    @OneToMany(mappedBy = "produto")
+    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "produto")
     private List<Preço> historicoDeValores;
     
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "produto")
     private List<Item> itens;
+    
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name="RELACAO_produto_loja", joinColumns ={
+        @JoinColumn(name="ID_Produto")},
+            inverseJoinColumns = {
+                @JoinColumn(name="ID_Loja")
+            }
+    )
+    private List<Loja> lojas;
+
+    public List<Loja> getLojas() {
+        return lojas;
+    }
+
+    public void setLojas(List<Loja> lojas) {
+        this.lojas = lojas;
+    }
 
 
     public int getCodigo() {

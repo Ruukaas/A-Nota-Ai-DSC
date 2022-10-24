@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -31,7 +32,7 @@ public class Usuario implements Serializable {
     private String telefone;
     private String cpf;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="donoDaNota")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="donoDaNota", fetch = FetchType.LAZY)
     private List<NotaFiscal> compras;
 
     public int getCodigo() {

@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -30,13 +31,14 @@ public class NotaFiscal implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int codigo;
     
-    @ManyToOne
-//    @JoinColumn
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name="ID_usuario", referencedColumnName="codigo")
     private Usuario donoDaNota;
     
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Loja loja;
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "notaFiscal")
+    
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "Item",fetch = FetchType.EAGER )
     private List<Item> itens;
     private String chaveDeAcesso;
     
