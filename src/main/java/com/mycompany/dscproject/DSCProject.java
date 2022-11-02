@@ -1,17 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
- */
 
 package com.mycompany.dscproject;
 
-/**
- *
- * @author ALUNO
- */
+import com.mycompany.dscproject.dao.ManagerDao;
+import com.mycompany.dscproject.model.Usuario;
+
 public class DSCProject {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Usuario user = new Usuario();
+        user.setCpf("251145745787-8");
+        user.setEmail("gostoso@sim.br");
+        user.setNome("Lucas");
+        user.setSenha("LucasDmaisSoh");
+        user.setTelefone("81955476829");
+        user.setUsuario("LukinhasDaRapeize");
+
+        ManagerDao.getCurrentInstance().insert(user);
+
     }
 }
