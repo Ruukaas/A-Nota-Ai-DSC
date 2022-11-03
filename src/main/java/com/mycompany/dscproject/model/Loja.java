@@ -6,6 +6,7 @@ package com.mycompany.dscproject.model;
 
 import java.io.Serializable;
 import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -28,14 +29,14 @@ public class Loja implements Serializable {
     private String CNPJ;
     private String endereço;
     private String nome;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="loja", fetch = FetchType.LAZY)
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "loja", fetch = FetchType.LAZY)
     private List<NotaFiscal> notasFiscais;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="localDeVenda")
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "localDeVenda")
     private List<Item> itens;
-    
-    @ManyToMany(mappedBy="lojas")
+
+    @ManyToMany(mappedBy = "lojas")
     private List<Produto> produtos;
 
     public List<Item> getItens() {
@@ -53,7 +54,6 @@ public class Loja implements Serializable {
     public void setProdutos(List<Produto> produtos) {
         this.produtos = produtos;
     }
-    
 
     public int getCodigo() {
         return Codigo;

@@ -6,6 +6,7 @@ package com.mycompany.dscproject.model;
 
 import java.io.Serializable;
 import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -31,8 +32,8 @@ public class Usuario implements Serializable {
     private String senha;
     private String telefone;
     private String cpf;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="donoDaNota", fetch = FetchType.LAZY)
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "donoDaNota", fetch = FetchType.LAZY)
     private List<NotaFiscal> compras;
 
     public int getCodigo() {

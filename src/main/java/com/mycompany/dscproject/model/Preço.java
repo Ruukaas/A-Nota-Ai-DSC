@@ -6,14 +6,13 @@ package com.mycompany.dscproject.model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 
 /**
  *
@@ -29,7 +28,7 @@ public class Preço implements Serializable {
 
     private LocalDateTime dataDeRegistro;
 
-    @OneToOne(mappedBy = "valorUnitario")
+    @OneToOne(mappedBy = "valorUnitario", optional = true)
     private Item item;
     @ManyToOne
     private Produto produto;
