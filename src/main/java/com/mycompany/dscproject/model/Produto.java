@@ -6,6 +6,7 @@ package com.mycompany.dscproject.model;
 
 import java.io.Serializable;
 import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -24,25 +25,23 @@ import jakarta.persistence.OneToMany;
 
 @Entity
 public class Produto implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int codigo;
     private String nome;
-    
-    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "produto")
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "produto")
     private List<Preço> historicoDeValores;
-    
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "produto")
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "produto")
     private List<Item> itens;
-    
+
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name="RELACAO_produto_loja", joinColumns ={
-        @JoinColumn(name="ID_Produto")},
-            inverseJoinColumns = {
-                @JoinColumn(name="ID_Loja")
-            }
-    )
+    @JoinTable(name = "RELACAO_produto_loja", joinColumns = {
+            @JoinColumn(name = "ID_Produto") }, inverseJoinColumns = {
+                    @JoinColumn(name = "ID_Loja")
+            })
     private List<Loja> lojas;
 
     public List<Loja> getLojas() {
@@ -52,7 +51,6 @@ public class Produto implements Serializable {
     public void setLojas(List<Loja> lojas) {
         this.lojas = lojas;
     }
-
 
     public int getCodigo() {
         return codigo;
@@ -77,7 +75,7 @@ public class Produto implements Serializable {
     public void setHistoricoDeValores(List<Preço> historicoDeValores) {
         this.historicoDeValores = historicoDeValores;
     }
-    
+
     public List<Item> getItens() {
         return itens;
     }

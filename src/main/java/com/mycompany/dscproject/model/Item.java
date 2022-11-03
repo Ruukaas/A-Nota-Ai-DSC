@@ -4,9 +4,9 @@
  */
 package com.mycompany.dscproject.model;
 
-import jakarta.persistence.CascadeType;
 import java.io.Serializable;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -23,31 +23,30 @@ import jakarta.persistence.OneToOne;
 
 @Entity
 public class Item implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
-    
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinColumn(name="produto_ID", referencedColumnName="codigo")
-    
+
     private Produto produto;
-    
+
     private int quantidade;
-    
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinColumn(name="valorId", referencedColumnName="codigo")
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "valorId", referencedColumnName = "codigo")
 
     private Preço valorUnitario;
-    
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinColumn(name="localDeVendoID", referencedColumnName="codigo")
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "localDeVendoID", referencedColumnName = "codigo")
     private Loja localDeVenda;
-    
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)        
-    @JoinColumn(name="notaFiscalID", referencedColumnName="codigo")
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "notaFiscalID", referencedColumnName = "codigo")
     private NotaFiscal notaFiscal;
 
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "produto_ID", referencedColumnName = "codigo")
 
     public int getCodigo() {
         return codigo;
@@ -88,7 +87,7 @@ public class Item implements Serializable {
     public void setLocalDeVenda(Loja localDeVenda) {
         this.localDeVenda = localDeVenda;
     }
-    
+
     public NotaFiscal getNotaFiscal() {
         return notaFiscal;
     }
@@ -96,5 +95,5 @@ public class Item implements Serializable {
     public void setNotaFiscal(NotaFiscal notaFiscal) {
         this.notaFiscal = notaFiscal;
     }
-    
+
 }

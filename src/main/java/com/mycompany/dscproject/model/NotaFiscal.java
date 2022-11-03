@@ -7,6 +7,7 @@ package com.mycompany.dscproject.model;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -16,8 +17,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 
 /**
  *
@@ -26,26 +25,26 @@ import jakarta.persistence.TemporalType;
 
 @Entity
 public class NotaFiscal implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int codigo;
-    
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name="ID_usuario", referencedColumnName="codigo")
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "ID_usuario", referencedColumnName = "codigo")
     private Usuario donoDaNota;
-    
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = true)
     private Loja loja;
-    
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "Item",fetch = FetchType.EAGER )
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "Item", fetch = FetchType.EAGER)
     private List<Item> itens;
     private String chaveDeAcesso;
-    
+
     private LocalDateTime dataEmissao;
-    
+
     private double valor;
-    
+
     public int getCodigo() {
         return codigo;
     }
