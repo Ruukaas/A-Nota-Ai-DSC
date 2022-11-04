@@ -4,12 +4,12 @@ import org.junit.Test;
 
 import com.mycompany.dscproject.dao.ManagerDao;
 import com.mycompany.dscproject.model.Item;
-import com.mycompany.dscproject.model.Preço;
+import com.mycompany.dscproject.model.Preco;
 
 public class pricesTest {
     @Test
     public void test() {
-        Preço price = new Preço();
+        Preco price = new Preco(); 
 
         price.setDataDeRegistro("21/32/1231");
         price.setItem(new Item());
