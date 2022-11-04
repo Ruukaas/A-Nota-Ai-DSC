@@ -35,7 +35,7 @@ public class Item implements Serializable {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "valorId", referencedColumnName = "codigo")
 
-    private Preço valorUnitario;
+    private Preco valorUnitario;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "localDeVendoID", referencedColumnName = "codigo")
@@ -72,11 +72,11 @@ public class Item implements Serializable {
         this.quantidade = quantidade;
     }
 
-    public Preço getValorUnitario() {
+    public Preco getValorUnitario() {
         return valorUnitario;
     }
 
-    public void setValorUnitario(Preço valorUnitario) {
+    public void setValorUnitario(Preco valorUnitario) {
         this.valorUnitario = valorUnitario;
     }
 

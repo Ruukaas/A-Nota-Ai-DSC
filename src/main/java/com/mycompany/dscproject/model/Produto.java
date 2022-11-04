@@ -32,7 +32,7 @@ public class Produto implements Serializable {
     private String nome;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "produto")
-    private List<Preço> historicoDeValores;
+    private List<Preco> historicoDeValores;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "produto")
     private List<Item> itens;
@@ -68,11 +68,11 @@ public class Produto implements Serializable {
         this.nome = nome;
     }
 
-    public List<Preço> getHistoricoDeValores() {
+    public List<Preco> getHistoricoDeValores() {
         return historicoDeValores;
     }
 
-    public void setHistoricoDeValores(List<Preço> historicoDeValores) {
+    public void setHistoricoDeValores(List<Preco> historicoDeValores) {
         this.historicoDeValores = historicoDeValores;
     }
 
