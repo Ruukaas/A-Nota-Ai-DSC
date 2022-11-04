@@ -20,7 +20,7 @@ import java.util.Date;
  * @author euluc
  */
 @Entity
-public class Preço implements Serializable
+public class Preco implements Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -82,10 +82,11 @@ public class Preço implements Serializable
     
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof Preço)) {
+        if (!(object instanceof Preco)) {
             return false;
         }
-        Preço other = (Preço) object;
+        
+        Preco other = (Preco) object;
 
         return !((this.codigo == null && other.codigo != null) || 
                  (this.codigo != null && !this.codigo.equals(other.codigo)));
