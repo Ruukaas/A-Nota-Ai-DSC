@@ -24,7 +24,7 @@ public class Preço implements Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int codigo;
+    private Long codigo;
     private double valor;
     @Temporal(TemporalType.DATE)
     private Date dataDeRegistro;
@@ -41,11 +41,11 @@ public class Preço implements Serializable
         this.produto = produto;
     }
 
-    public int getCodigo() {
+    public Long getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(Long codigo) {
         this.codigo = codigo;
     }
 
@@ -71,5 +71,23 @@ public class Preço implements Serializable
 
     public void setItem(Item item) {
         this.item = item;
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (codigo != null ? codigo.hashCode() : 0);
+        return hash;
+    }
+    
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Preço)) {
+            return false;
+        }
+        Preço other = (Preço) object;
+
+        return !((this.codigo == null && other.codigo != null) || 
+                 (this.codigo != null && !this.codigo.equals(other.codigo)));
     }
 }
