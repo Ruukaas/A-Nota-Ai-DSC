@@ -5,29 +5,29 @@
 package com.mycompany.dscproject.model;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.util.Date;
 
 /**
  *
  * @author euluc
  */
 @Entity
-public class Preço implements Serializable {
-
+public class Preço implements Serializable
+{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int codigo;
     private double valor;
-
-    private LocalDateTime dataDeRegistro;
-
+    @Temporal(TemporalType.DATE)
+    private Date dataDeRegistro;
     @OneToOne(mappedBy = "valorUnitario", optional = true)
     private Item item;
     @ManyToOne
@@ -57,11 +57,11 @@ public class Preço implements Serializable {
         this.valor = valor;
     }
 
-    public LocalDateTime getDataDeRegistro() {
+    public Date getDataDeRegistro() {
         return dataDeRegistro;
     }
 
-    public void setDataDeRegistro(LocalDateTime dataDeRegistro) {
+    public void setDataDeRegistro(Date dataDeRegistro) {
         this.dataDeRegistro = dataDeRegistro;
     }
 
