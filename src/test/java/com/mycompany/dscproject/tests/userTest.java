@@ -1,13 +1,18 @@
+package com.mycompany.dscproject.tests;
+
+import com.mycompany.dscproject.dao.ManagerDao;
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 
 import com.mycompany.dscproject.model.NotaFiscal;
 import com.mycompany.dscproject.model.Usuario;
+import java.util.ArrayList;
 
 public class userTest {
 
@@ -15,7 +20,7 @@ public class userTest {
     public void test() {
         Usuario user = new Usuario();
         NotaFiscal nota = new NotaFiscal();
-        List<NotaFiscal> compras = new List();
+        List<NotaFiscal> compras = new ArrayList<NotaFiscal>();
 
         compras.add(nota);
         user.setCpf("251145745787-8");
