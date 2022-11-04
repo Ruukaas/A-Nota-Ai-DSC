@@ -1,4 +1,3 @@
-
 package com.mycompany.dscproject;
 
 import com.mycompany.dscproject.dao.ManagerDao;

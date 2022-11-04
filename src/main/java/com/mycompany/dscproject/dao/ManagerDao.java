@@ -1,20 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.dscproject.dao;
 
 import java.util.List;
-
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-/**
- *
- * @author Eduardo
- */
 public class ManagerDao {
 
     private static ManagerDao myself = null;
@@ -51,7 +41,6 @@ public class ManagerDao {
     }
 
     public List read(String query, Class c) {
-
         EntityManager em = emf.createEntityManager();
 
         List returnedList = em.createQuery(query, c).getResultList();
@@ -75,5 +64,4 @@ public class ManagerDao {
         em.getTransaction().commit();
         em.close();
     }
-
 }

@@ -1,13 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.dscproject.model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -22,7 +17,6 @@ import jakarta.persistence.OneToMany;
  *
  * @author euluc
  */
-
 @Entity
 public class NotaFiscal implements Serializable {
 

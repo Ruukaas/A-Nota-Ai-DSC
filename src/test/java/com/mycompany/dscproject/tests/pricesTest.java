@@ -1,9 +1,7 @@
 package com.mycompany.dscproject.tests;
 
 import static org.junit.Assert.assertNotNull;
-
 import org.junit.Test;
-
 import com.mycompany.dscproject.dao.ManagerDao;
 import com.mycompany.dscproject.model.Item;
 import com.mycompany.dscproject.model.Preco;

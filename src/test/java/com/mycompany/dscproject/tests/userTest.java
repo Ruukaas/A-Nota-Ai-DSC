@@ -1,15 +1,10 @@
 package com.mycompany.dscproject.tests;
 
 import com.mycompany.dscproject.dao.ManagerDao;
-import static org.junit.Assert.assertEquals;
-
 import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-
 import org.junit.Test;
-
 import com.mycompany.dscproject.model.NotaFiscal;
 import com.mycompany.dscproject.model.Usuario;
 import java.util.ArrayList;
