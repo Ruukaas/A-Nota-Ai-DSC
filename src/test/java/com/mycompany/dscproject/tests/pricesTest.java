@@ -8,7 +8,8 @@ import com.mycompany.dscproject.model.Preco;
 import com.mycompany.dscproject.model.Produto;
 import java.util.Date;
 
-public class pricesTest {
+public class pricesTest extends BaseTests
+{
     @Test
     public void test() {
         Preco price = new Preco(); 
@@ -24,6 +25,5 @@ public class pricesTest {
 
         // Get id from db, work In Progress
         ManagerDao.getCurrentInstance().read(null, getClass());
-
     }
 }

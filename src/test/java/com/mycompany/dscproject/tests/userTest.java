@@ -9,8 +9,8 @@ import com.mycompany.dscproject.model.NotaFiscal;
 import com.mycompany.dscproject.model.Usuario;
 import java.util.ArrayList;
 
-public class userTest {
-
+public class userTest extends BaseTests
+{
     @Test
     public void test() {
         Usuario user = new Usuario();
@@ -35,6 +35,5 @@ public class userTest {
         assertEquals("LucasDmaisSoh", user.getSenha());
         assertEquals("81955476829", user.getTelefone());
         assertEquals("LukinhasDaRapeize", user.getUsuario());
-
     }
 }
