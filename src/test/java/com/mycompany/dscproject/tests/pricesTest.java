@@ -24,6 +24,6 @@ public class pricesTest extends BaseTests
         assertNotNull(price.getCodigo());
 
         // Get id from db, work In Progress
-        ManagerDao.getCurrentInstance().read(null, getClass());
+       
     }
 }

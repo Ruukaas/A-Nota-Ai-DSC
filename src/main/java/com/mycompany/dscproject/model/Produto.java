@@ -1,6 +1,7 @@
 package com.mycompany.dscproject.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -26,24 +27,25 @@ public class Produto implements Serializable {
     private String nome;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "produto")
-    private List<Preco> historicoDeValores;
+    private List<Preco> historicoDeValores = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "produto")
-    private List<Item> itens;
+    private List<Item> itens = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "RELACAO_produto_loja", joinColumns = {
             @JoinColumn(name = "ID_Produto") }, inverseJoinColumns = {
                     @JoinColumn(name = "ID_Loja")
             })
-    private List<Loja> lojas;
+    private List<Loja> lojas = new ArrayList<>();
 
     public List<Loja> getLojas() {
         return lojas;
     }
 
-    public void setLojas(List<Loja> lojas) {
-        this.lojas = lojas;
+    public void setLojas(Loja lojas) {
+        lojas.setProdutos(this);
+        this.lojas.add(lojas);
     }
 
     public int getCodigo() {
@@ -74,7 +76,8 @@ public class Produto implements Serializable {
         return itens;
     }
 
-    public void setItens(List<Item> itens) {
-        this.itens = itens;
+    public void setItens(Item itens) {
+        itens.setProduto(this);
+        this.itens.add(itens);
     }
 }

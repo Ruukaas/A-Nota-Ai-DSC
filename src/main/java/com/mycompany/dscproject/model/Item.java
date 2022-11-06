@@ -39,9 +39,6 @@ public class Item implements Serializable {
     @JoinColumn(name = "notaFiscalID", referencedColumnName = "codigo")
     private NotaFiscal notaFiscal;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
-    @JoinColumn(name = "produto_ID", referencedColumnName = "codigo")
-
     public int getCodigo() {
         return codigo;
     }

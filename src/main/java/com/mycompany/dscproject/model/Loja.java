@@ -1,6 +1,7 @@
 package com.mycompany.dscproject.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -26,28 +27,30 @@ public class Loja implements Serializable {
     private String nome;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "loja", fetch = FetchType.LAZY)
-    private List<NotaFiscal> notasFiscais;
+    private List<NotaFiscal> notasFiscais = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "localDeVenda")
-    private List<Item> itens;
+    private List<Item> itens = new ArrayList<>();
 
     @ManyToMany(mappedBy = "lojas")
-    private List<Produto> produtos;
+    private List<Produto> produtos = new ArrayList<>();
 
     public List<Item> getItens() {
         return itens;
     }
 
-    public void setItens(List<Item> itens) {
-        this.itens = itens;
+    public void setItens(Item itens) {
+        itens.setLocalDeVenda(this);
+        this.itens.add(itens);
     }
 
     public List<Produto> getProdutos() {
         return produtos;
     }
 
-    public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
+    public void setProdutos(Produto produtos) {
+        produtos.setLojas(this);
+        this.produtos.add(produtos);
     }
 
     public int getCodigo() {
@@ -86,8 +89,9 @@ public class Loja implements Serializable {
         return notasFiscais;
     }
 
-    public void setNotasFiscais(List<NotaFiscal> notasFiscais) {
-        this.notasFiscais = notasFiscais;
+    public void setNotasFiscais(NotaFiscal notasFiscais) {
+        notasFiscais.setLoja(this);
+        this.notasFiscais.add(notasFiscais);
     }
 
 }

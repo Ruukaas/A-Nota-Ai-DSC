@@ -2,6 +2,7 @@ package com.mycompany.dscproject.model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -9,7 +10,6 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
@@ -24,7 +24,6 @@ public class NotaFiscal implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int codigo;
 
-//    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
     @ManyToOne(cascade = CascadeType.ALL)
     private Usuario donoDaNota;
 
@@ -32,7 +31,7 @@ public class NotaFiscal implements Serializable {
     private Loja loja;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "notaFiscal", fetch = FetchType.EAGER)
-    private List<Item> itens;
+    private List<Item> itens = new ArrayList<>();
     private String chaveDeAcesso;
 
     private LocalDateTime dataEmissao;
@@ -67,8 +66,9 @@ public class NotaFiscal implements Serializable {
         return itens;
     }
 
-    public void setItens(List<Item> itens) {
-        this.itens = itens;
+    public void setItens(Item itens) {
+        itens.setNotaFiscal(this);
+        this.itens.add(itens);
     }
 
     public String getChaveDeAcesso() {
