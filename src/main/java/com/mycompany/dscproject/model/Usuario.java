@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import java.util.ArrayList;
 
 /**
  *
@@ -27,9 +28,12 @@ public class Usuario implements Serializable {
     private String telefone;
     private String cpf;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "donoDaNota", fetch = FetchType.LAZY)
-    private List<NotaFiscal> compras;
-
+    
+   
+    @OneToMany(cascade = CascadeType.ALL)
+    // Bidirecional tem que ser assim
+    private List<NotaFiscal> compras = new ArrayList<>();
+    
     public int getCodigo() {
         return codigo;
     }
@@ -97,8 +101,9 @@ public class Usuario implements Serializable {
     public List<NotaFiscal> getCompras() {
         return compras;
     }
-
-    public void setCompras(List<NotaFiscal> compras) {
-        this.compras = compras;
+    // Bidirecional tem que fazer assim
+    public void setCompras(NotaFiscal compras) {
+       compras.setDonoDaNota(this);
+        this.compras.add(compras);
     }
 }

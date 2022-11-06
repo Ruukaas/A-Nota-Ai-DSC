@@ -24,14 +24,14 @@ public class NotaFiscal implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int codigo;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
-    @JoinColumn(name = "ID_usuario", referencedColumnName = "codigo")
+//    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Usuario donoDaNota;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = true)
     private Loja loja;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "Item", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "notaFiscal", fetch = FetchType.EAGER)
     private List<Item> itens;
     private String chaveDeAcesso;
 

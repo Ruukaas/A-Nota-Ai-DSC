@@ -13,6 +13,8 @@ public class DSCProject {
         user.setSenha("LucasDmaisSoh");
         user.setTelefone("81955476829");
         user.setUsuario("LukinhasDaRapeize");
+        
+        
 
         ManagerDao.getCurrentInstance().insert(user);
 
