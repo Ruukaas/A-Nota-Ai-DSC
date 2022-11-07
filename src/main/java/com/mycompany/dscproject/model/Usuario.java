@@ -97,16 +97,6 @@ public class Usuario implements Serializable {
         this.telefone = telefone;
     }
 
-    /*
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-    */
-
     public List<NotaFiscal> getCompras() {
         return compras;
     }
