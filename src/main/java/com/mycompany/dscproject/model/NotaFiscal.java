@@ -1,7 +1,6 @@
 package com.mycompany.dscproject.model;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import jakarta.persistence.CascadeType;
@@ -12,6 +11,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.util.Date;
 
 /**
  *
@@ -34,7 +36,8 @@ public class NotaFiscal implements Serializable {
     private List<Item> itens = new ArrayList<>();
     private String chaveDeAcesso;
 
-    private LocalDateTime dataEmissao;
+    @Temporal(TemporalType.DATE)
+    private Date dataEmissao;
 
     private double valor;
 
@@ -79,11 +82,11 @@ public class NotaFiscal implements Serializable {
         this.chaveDeAcesso = chaveDeAcesso;
     }
 
-    public LocalDateTime getDataEmissao() {
+    public Date getDataEmissao() {
         return dataEmissao;
     }
 
-    public void setDataEmissao(LocalDateTime dataEmissao) {
+    public void setDataEmissao(Date dataEmissao) {
         this.dataEmissao = dataEmissao;
     }
 
