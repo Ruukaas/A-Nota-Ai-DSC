@@ -29,20 +29,8 @@ public class Loja implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "loja", fetch = FetchType.LAZY)
     private List<NotaFiscal> notasFiscais = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "localDeVenda")
-    private List<Item> itens = new ArrayList<>();
-
     @ManyToMany(mappedBy = "lojas")
     private List<Produto> produtos = new ArrayList<>();
-
-    public List<Item> getItens() {
-        return itens;
-    }
-
-    public void setItens(Item itens) {
-        itens.setLocalDeVenda(this);
-        this.itens.add(itens);
-    }
 
     public List<Produto> getProdutos() {
         return produtos;
@@ -93,5 +81,4 @@ public class Loja implements Serializable {
         notasFiscais.setLoja(this);
         this.notasFiscais.add(notasFiscais);
     }
-
 }
