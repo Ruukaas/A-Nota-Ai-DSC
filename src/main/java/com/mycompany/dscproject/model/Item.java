@@ -19,7 +19,7 @@ import jakarta.persistence.OneToOne;
 public class Item implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int codigo;
 
     private Produto produto;

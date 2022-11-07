@@ -27,7 +27,7 @@ import java.util.ArrayList;
 )
 public class Usuario implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     protected Long codigo;
     protected String nome;
     protected String login;
