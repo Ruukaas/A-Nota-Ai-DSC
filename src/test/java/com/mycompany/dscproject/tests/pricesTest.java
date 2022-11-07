@@ -8,22 +8,22 @@ import com.mycompany.dscproject.model.Preco;
 import com.mycompany.dscproject.model.Produto;
 import java.util.Date;
 
-public class pricesTest extends BaseTests
+public class pricesTest
 {
-    @Test
-    public void test() {
-        Preco price = new Preco(); 
+  @Test
+  public void test() {
+    Preco price = new Preco(); 
 
-        price.setDataDeRegistro(new Date(2022, 12, 20));
-        price.setItem(new Item());
-        price.setProduto(new Produto());
-        price.setValor(15.56);
+    price.setDataDeRegistro(new Date(2022, 12, 20));
+    price.setItem(new Item());
+    price.setProduto(new Produto());
+    price.setValor(15.56);
 
-        ManagerDao.getCurrentInstance().insert(price);
+    ManagerDao.getCurrentInstance().insert(price);
 
-        assertNotNull(price.getCodigo());
+    assertNotNull(price.getCodigo());
 
-        // Get id from db, work In Progress
-       
-    }
+    // Get id from db, work In Progress
+
+  }
 }
