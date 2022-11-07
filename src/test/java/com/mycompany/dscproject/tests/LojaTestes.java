@@ -35,10 +35,17 @@ public class LojaTestes {
         
         loja.setCNPJ("66548654946-4");
         loja.setEndereço("Em algum lugar no Recife");
-        loja.setItens(items);
         loja.setNome("Emon");
-        loja.setProdutos(produtos);
-        loja.setNotasFiscais(nota);
+        
+        produtos.forEach(produto -> {
+            loja.setProdutos(produto);
+        });
+        // loja.setProdutos(produtos);
+
+        nota.forEach(n -> {
+            loja.setNotasFiscais(n);
+        });
+        // loja.setNotasFiscais(nota);
                 
         ManagerDao.getCurrentInstance().insert(loja); 
     }
@@ -51,7 +58,6 @@ public class LojaTestes {
         Loja loja = em.find(Loja.class, 1);
         
         assertNotNull(loja);
-        assertNotNull(loja.getItens());
         assertEquals("66548654946-4", loja.getCNPJ());
         assertEquals("Emon", loja.getNome());
     }

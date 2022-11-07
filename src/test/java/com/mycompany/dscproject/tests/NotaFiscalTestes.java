@@ -11,6 +11,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -30,14 +31,18 @@ public class NotaFiscalTestes {
         Item tequila = null;
         items.add(tequila);
 
-        nota.setDataEmissao(LocalDateTime.now());
-        nota.setItens(items);
+        nota.setDataEmissao(new Date());
+        
+        items.forEach(item -> {
+            nota.setItens(item);
+        });
+        //nota.setItens(items);
+        
         nota.setValor(5000);
         nota.setLoja(loja);
         nota.setDonoDaNota(donoDaNota);
 
         ManagerDao.getCurrentInstance().insert(nota); 
-    
     };    
     
     @Test
@@ -52,6 +57,5 @@ public class NotaFiscalTestes {
         assertEquals(5000, nota.getLoja());
         assertEquals("", nota.getItens());
         assertEquals("", nota.getLoja());
-
     };
 }
