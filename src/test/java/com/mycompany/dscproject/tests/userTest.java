@@ -26,7 +26,7 @@ public class userTest
         user.setNome("amarildo");
         user.setSenha("Pikamon");
         user.setTelefone("44651684134561");
-        user.setUsuario("Issoéumeste");
+        user.setLogin("Issoéumeste");
         user.setCompras(nota);
 
         ManagerDao.getCurrentInstance().insert(user);
@@ -47,6 +47,6 @@ public class userTest
         assertEquals("amarildo", user.getNome());
         assertEquals("Pikamon", user.getSenha());
         assertEquals("44651684134561", user.getTelefone());
-        assertEquals("Issoéumeste", user.getUsuario());
+        assertEquals("Issoéumeste", user.getLogin());
     }
 }

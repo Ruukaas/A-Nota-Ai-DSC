@@ -30,7 +30,7 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long codigo;
     protected String nome;
-    protected String usuario;
+    protected String login;
     protected String sobrenome;
     protected String email;
     protected String senha;
@@ -57,12 +57,12 @@ public class Usuario implements Serializable {
         this.nome = nome;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public String getLogin() {
+        return login;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getSobrenome() {
