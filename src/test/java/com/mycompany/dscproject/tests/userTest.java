@@ -8,8 +8,6 @@ import com.mycompany.dscproject.model.Usuario;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import java.util.ArrayList;
-import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class userTest 
@@ -23,7 +21,7 @@ public class userTest
         
         nota.setChaveDeAcesso("qualquerOCIsa");      
         
-        user.setCpf("s56465465465168");
+        // user.setCpf("s56465465465168");
         user.setEmail("sadsadasdasfasf@sim.br");
         user.setNome("amarildo");
         user.setSenha("Pikamon");
@@ -44,7 +42,7 @@ public class userTest
         Usuario user = em.find(Usuario.class, 1);
         assertNotNull(user);
         assertNotNull(user.getCompras());
-        assertEquals("s56465465465168", user.getCpf());
+        // assertEquals("s56465465465168", user.getCpf());
         assertEquals("sadsadasdasfasf@sim.br", user.getEmail());
         assertEquals("amarildo", user.getNome());
         assertEquals("Pikamon", user.getSenha());

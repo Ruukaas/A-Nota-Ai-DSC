@@ -7,7 +7,7 @@ public class DSCProject {
 
     public static void main(String[] args) {
         Usuario user = new Usuario();
-        user.setCpf("251145745787-8");
+        // user.setCpf("251145745787-8");;
         user.setEmail("gostoso@sim.br");
         user.setNome("Lucas");
         user.setSenha("LucasDmaisSoh");

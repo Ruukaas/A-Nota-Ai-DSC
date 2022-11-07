@@ -3,10 +3,14 @@ package com.mycompany.dscproject.model;
 import java.io.Serializable;
 import java.util.List;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.OneToMany;
 import java.util.ArrayList;
 
@@ -15,29 +19,33 @@ import java.util.ArrayList;
  * @author euluc
  */
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(
+  name = "Discriminador_Usuario",
+  discriminatorType = DiscriminatorType.STRING,
+  length = 8
+)
 public class Usuario implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int codigo;
-    private String nome;
-    private String usuario;
-    private String sobrenome;
-    private String email;
-    private String senha;
-    private String telefone;
-    private String cpf;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected Long codigo;
+    protected String nome;
+    protected String usuario;
+    protected String sobrenome;
+    protected String email;
+    protected String senha;
+    protected String telefone;
+    // protected String cpf;
 
-    
-   
     @OneToMany(cascade = CascadeType.ALL)
     // Bidirecional tem que ser assim
     private List<NotaFiscal> compras = new ArrayList<>();
     
-    public int getCodigo() {
+    public Long getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(Long codigo) {
         this.codigo = codigo;
     }
 
@@ -89,6 +97,7 @@ public class Usuario implements Serializable {
         this.telefone = telefone;
     }
 
+    /*
     public String getCpf() {
         return cpf;
     }
@@ -96,6 +105,7 @@ public class Usuario implements Serializable {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
+    */
 
     public List<NotaFiscal> getCompras() {
         return compras;
