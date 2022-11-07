@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 
-public class NotaFiscalTest {
+public class NotaFiscalTestes {
     
     @Test
     public void NotaFiscalWriteTest() {

@@ -15,7 +15,7 @@ import org.junit.Test;
  *
  * @author Inspiron 15 5566
  */
-public class PrecoTest {
+public class PrecoTestes {
     @Test
     public void PrecoWriteTest(){
         Preco preco = new Preco();

@@ -10,7 +10,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import static org.junit.Assert.assertEquals;
 
-public class userTest 
+public class UsuarioTestes 
 {
 
     

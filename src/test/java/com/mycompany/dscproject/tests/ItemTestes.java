@@ -21,7 +21,7 @@ import org.junit.Test;
  *
  * @author Inspiron 15 5566
  */
-public class ItemTest {
+public class ItemTestes {
        @Test
     public void ItemWriteTest() {
         Item item = new Item();

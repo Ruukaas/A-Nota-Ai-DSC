@@ -7,7 +7,6 @@ package com.mycompany.dscproject.tests;
 import com.mycompany.dscproject.dao.ManagerDao;
 import com.mycompany.dscproject.model.Item;
 import com.mycompany.dscproject.model.Loja;
-import com.mycompany.dscproject.model.NotaFiscal;
 import com.mycompany.dscproject.model.Preco;
 import com.mycompany.dscproject.model.Produto;
 import java.util.ArrayList;
@@ -15,7 +14,7 @@ import java.util.List;
 import org.junit.Test;
 
 
-public class ProdutoTest {
+public class ProdutoTestes {
     @Test
     public void ItemWriteTest() {
         Produto produto = new Produto();
