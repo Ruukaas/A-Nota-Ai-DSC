@@ -3,6 +3,7 @@ package com.mycompany.dscproject.model;
 import java.io.Serializable;
 import java.util.List;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -18,24 +19,46 @@ import jakarta.persistence.OneToMany;
 public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int codigo;
-    private String nome;
-    private String usuario;
-    private String sobrenome;
-    private String email;
-    private String senha;
-    private String telefone;
-    private String cpf;
+    private Long codigo;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "donoDaNota", fetch = FetchType.LAZY)
     private List<NotaFiscal> compras;
+    
+    @Column(name = "nome", nullable = false)
+    private String nome;
+    
+    @Column(name = "login", nullable = false)
+    private String login;
+    
+    @Column(name = "sobrenome", nullable = false)
+    private String sobrenome;
+    
+    @Column(name = "email", nullable = false)
+    private String email;
+    
+    @Column(name = "senha", nullable = false)
+    private String senha;
+    
+    @Column(name = "telefone", nullable = true)
+    private String telefone;
+    
+    @Column(name = "cpf", nullable = true)
+    private String cpf;
 
-    public int getCodigo() {
+    public Long getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(Long codigo) {
         this.codigo = codigo;
+    }
+    
+    public List<NotaFiscal> getCompras() {
+        return compras;
+    }
+
+    public void setCompras(List<NotaFiscal> compras) {
+        this.compras = compras;
     }
 
     public String getNome() {
@@ -46,12 +69,12 @@ public class Usuario implements Serializable {
         this.nome = nome;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public String getLogin() {
+        return login;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getSobrenome() {
@@ -94,11 +117,23 @@ public class Usuario implements Serializable {
         this.cpf = cpf;
     }
 
-    public List<NotaFiscal> getCompras() {
-        return compras;
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (codigo != null ? codigo.hashCode() : 0);
+        return hash;
     }
-
-    public void setCompras(List<NotaFiscal> compras) {
-        this.compras = compras;
+    
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Usuario)) { return false; }
+        Usuario other = (Usuario) object;
+        return !((this.codigo == null && other.codigo != null) || 
+                  (this.codigo != null && !this.codigo.equals(other.codigo)));
+    }
+    
+    @Override
+    public String toString() {
+        return "com.mycompany.dscproject.model.Usuario[ id=" + codigo + " ]";
     }
 }

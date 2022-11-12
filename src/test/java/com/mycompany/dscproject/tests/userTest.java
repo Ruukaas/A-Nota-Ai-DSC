@@ -23,7 +23,7 @@ public class userTest extends BaseTests
         user.setNome("Lucas");
         user.setSenha("LucasDmaisSoh");
         user.setTelefone("81955476829");
-        user.setUsuario("LukinhasDaRapeize");
+        user.setLogin("LukinhasDaRapeize");
         user.setCompras(compras);
 
         ManagerDao.getCurrentInstance().insert(user);
@@ -34,6 +34,6 @@ public class userTest extends BaseTests
         assertEquals("Lucas", user.getNome());
         assertEquals("LucasDmaisSoh", user.getSenha());
         assertEquals("81955476829", user.getTelefone());
-        assertEquals("LukinhasDaRapeize", user.getUsuario());
+        assertEquals("LukinhasDaRapeize", user.getLogin());
     }
 }
