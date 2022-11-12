@@ -12,6 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import java.util.ArrayList;
 
 /**
  *
@@ -32,14 +33,26 @@ public class Produto implements Serializable {
     private List<Item> itens;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "RELACAO_produto_loja", joinColumns = {
-            @JoinColumn(name = "ID_Produto") }, inverseJoinColumns = {
-                    @JoinColumn(name = "ID_Loja")
-            })
+    @JoinTable(
+        name = "TB_PRODUTOS_LOJAS", 
+        joinColumns = {
+            @JoinColumn(name = "ID_Produto")
+        },
+        inverseJoinColumns = {
+            @JoinColumn(name = "ID_Loja")
+        }
+    )
     private List<Loja> lojas;
 
     public List<Loja> getLojas() {
         return lojas;
+    }
+    
+    public void adicionarLoja(Loja l) {
+        if (lojas == null) { lojas = new ArrayList<>(); }
+        
+        lojas.add(l);
+        l.adicionarProduto(this);
     }
 
     public void setLojas(List<Loja> lojas) {

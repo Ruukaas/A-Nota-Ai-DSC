@@ -3,6 +3,7 @@ package com.mycompany.dscproject.model;
 import java.io.Serializable;
 import java.util.List;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -10,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,47 +19,61 @@ import jakarta.persistence.OneToMany;
  */
 @Entity
 public class Loja implements Serializable {
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int Codigo;
-    private String CNPJ;
-    private String endereço;
-    private String nome;
-
+    private Long codigo;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "loja", fetch = FetchType.LAZY)
     private List<NotaFiscal> notasFiscais;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "localDeVenda")
-    private List<Item> itens;
-
     @ManyToMany(mappedBy = "lojas")
     private List<Produto> produtos;
+    
+    @Column(name = "CNPJ", nullable = false)
+    private String CNPJ;
+    
+    @Column(name = "endereco", nullable = false)
+    private String endereco;
+    
+    @Column(name = "nome", nullable = false)
+    private String nome;
 
-    public List<Item> getItens() {
-        return itens;
+    public Long getCodigo() {
+        return codigo;
     }
 
-    public void setItens(List<Item> itens) {
-        this.itens = itens;
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
+    }
+    
+    public List<NotaFiscal> getNotasFiscais() {
+        return notasFiscais;
+    }
+    
+    public void adicionarNotaFiscal(NotaFiscal nf) {
+        if (this.notasFiscais == null) {
+            this.notasFiscais = new ArrayList<>();
+        }
+        
+        this.notasFiscais.add(nf);
+        nf.setLoja(this);
+    }
+    
+    public boolean removerNotaFiscal(NotaFiscal nf) {
+        return notasFiscais.remove(nf);
     }
 
     public List<Produto> getProdutos() {
         return produtos;
     }
 
-    public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
+    public void adicionarProduto(Produto p) {
+        if (produtos == null) { produtos = new ArrayList<>(); }
+        
+        produtos.add(p);
+        p.adicionarLoja(this);
     }
-
-    public int getCodigo() {
-        return Codigo;
-    }
-
-    public void setCodigo(int Codigo) {
-        this.Codigo = Codigo;
-    }
-
+    
     public String getCNPJ() {
         return CNPJ;
     }
@@ -66,12 +82,12 @@ public class Loja implements Serializable {
         this.CNPJ = CNPJ;
     }
 
-    public String getEndereço() {
-        return endereço;
+    public String getEndereco() {
+        return endereco;
     }
 
-    public void setEndereço(String endereço) {
-        this.endereço = endereço;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
     public String getNome() {
@@ -82,12 +98,23 @@ public class Loja implements Serializable {
         this.nome = nome;
     }
 
-    public List<NotaFiscal> getNotasFiscais() {
-        return notasFiscais;
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (codigo != null ? codigo.hashCode() : 0);
+        return hash;
     }
 
-    public void setNotasFiscais(List<NotaFiscal> notasFiscais) {
-        this.notasFiscais = notasFiscais;
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Loja)) { return false; }
+        Loja other = (Loja) object;
+        return !((this.codigo == null && other.codigo != null) ||
+                  (this.codigo != null && !this.codigo.equals(other.codigo)));
     }
 
+    @Override
+    public String toString() {
+        return "com.mycompany.dscproject.model.Loja[ id=" + codigo + " ]";
+    }
 }
