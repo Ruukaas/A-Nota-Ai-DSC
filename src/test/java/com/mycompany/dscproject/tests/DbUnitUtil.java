@@ -20,7 +20,7 @@ public class DbUnitUtil {
         
         try
         {
-            conn    = DriverManager.getConnection("jdbc:derby://localhost:1527/ANotaAi");
+            conn    = DriverManager.getConnection("jdbc:derby://localhost:1527/sample", "app", "app");
             db_conn = new DatabaseConnection(conn);
             
             FlatXmlDataSetBuilder builder = new FlatXmlDataSetBuilder();
