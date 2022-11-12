@@ -3,6 +3,7 @@ package com.mycompany.dscproject.model;
 import java.io.Serializable;
 import java.util.List;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -20,11 +21,9 @@ import java.util.ArrayList;
  */
 @Entity
 public class Produto implements Serializable {
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int codigo;
-    private String nome;
+    private Long codigo;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "produto")
     private List<Preco> historicoDeValores;
@@ -43,7 +42,48 @@ public class Produto implements Serializable {
         }
     )
     private List<Loja> lojas;
+    
+    @Column(name = "nome", nullable = false)
+    private String nome;
 
+    public Long getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
+    }
+    
+    public List<Preco> getHistoricoDeValores() {
+        return historicoDeValores;
+    }
+    
+    public void adicionarPreco(Preco p) {
+       if (historicoDeValores == null) { historicoDeValores = new ArrayList<>(); }
+       
+       historicoDeValores.add(p);
+       p.setProduto(this);
+    }
+    
+    public boolean removerPreco(Preco p) {
+       return historicoDeValores.remove(p);
+    }
+    
+    public List<Item> getItens() {
+        return itens;
+    }
+    
+    public void adicionarItem(Item i) {
+        if (itens == null) { itens = new ArrayList<>(); }
+        
+        itens.add(i);
+        i.setProduto(this);
+    }
+    
+    public boolean removerItem(Item i) {
+        return itens.remove(i);
+    }
+    
     public List<Loja> getLojas() {
         return lojas;
     }
@@ -54,19 +94,7 @@ public class Produto implements Serializable {
         lojas.add(l);
         l.adicionarProduto(this);
     }
-
-    public void setLojas(List<Loja> lojas) {
-        this.lojas = lojas;
-    }
-
-    public int getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
-
+    
     public String getNome() {
         return nome;
     }
@@ -74,20 +102,24 @@ public class Produto implements Serializable {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    public List<Preco> getHistoricoDeValores() {
-        return historicoDeValores;
+    
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (codigo != null ? codigo.hashCode() : 0);
+        return hash;
     }
-
-    public void setHistoricoDeValores(List<Preco> historicoDeValores) {
-        this.historicoDeValores = historicoDeValores;
+    
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Produto)) { return false; }
+        Produto other = (Produto) object;
+        return !((this.codigo == null && other.codigo != null) || 
+                  (this.codigo != null && !this.codigo.equals(other.codigo)));
     }
-
-    public List<Item> getItens() {
-        return itens;
-    }
-
-    public void setItens(List<Item> itens) {
-        this.itens = itens;
+    
+    @Override
+    public String toString() {
+        return "com.mycompany.dscproject.model.Produto[ id=" + codigo + " ]";
     }
 }
