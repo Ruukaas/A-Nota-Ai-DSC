@@ -4,11 +4,15 @@ import java.io.Serializable;
 import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.OneToMany;
 
 /**
@@ -16,34 +20,37 @@ import jakarta.persistence.OneToMany;
  * @author euluc
  */
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(
+    name = "Discriminador_Usuario",
+    discriminatorType = DiscriminatorType.STRING,
+    length = 8
+)
 public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long codigo;
+    protected Long codigo;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "donoDaNota", fetch = FetchType.LAZY)
-    private List<NotaFiscal> compras;
+    protected List<NotaFiscal> compras;
     
     @Column(name = "nome", nullable = false)
-    private String nome;
+    protected String nome;
     
     @Column(name = "login", nullable = false)
-    private String login;
+    protected String login;
     
     @Column(name = "sobrenome", nullable = false)
-    private String sobrenome;
+    protected String sobrenome;
     
     @Column(name = "email", nullable = false)
-    private String email;
+    protected String email;
     
     @Column(name = "senha", nullable = false)
-    private String senha;
+    protected String senha;
     
     @Column(name = "telefone", nullable = true)
-    private String telefone;
-    
-    @Column(name = "cpf", nullable = true)
-    private String cpf;
+    protected String telefone;
 
     public Long getCodigo() {
         return codigo;
@@ -107,14 +114,6 @@ public class Usuario implements Serializable {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
     }
 
     @Override
