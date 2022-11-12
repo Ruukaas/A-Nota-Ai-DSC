@@ -10,5 +10,7 @@ import org.junit.runners.Suite;
     com.mycompany.dscproject.tests.NotaFiscalTeste.class,
     com.mycompany.dscproject.tests.PrecoTeste.class,
     com.mycompany.dscproject.tests.ProdutoTeste.class,
+    com.mycompany.dscproject.tests.VendedorTeste.class,
+    com.mycompany.dscproject.tests.ClienteTeste.class
 })
 public class TestSuite {}
