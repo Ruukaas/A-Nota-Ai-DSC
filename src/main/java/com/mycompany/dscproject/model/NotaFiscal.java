@@ -27,7 +27,7 @@ public class NotaFiscal implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long codigo;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "Item", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "notaFiscal", fetch = FetchType.EAGER)
     private List<Item> itens;
     
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
