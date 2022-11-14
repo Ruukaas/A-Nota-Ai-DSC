@@ -26,7 +26,7 @@ public class Loja implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "loja", fetch = FetchType.LAZY)
     private List<NotaFiscal> notasFiscais;
 
-    @ManyToMany(mappedBy = "lojas")
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "lojas")
     private List<Produto> produtos;
     
     @Column(name = "CNPJ", nullable = false)
