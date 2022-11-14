@@ -7,9 +7,6 @@ import java.util.Calendar;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- * @author Lucas Gomes
- **/
 public class LojaTeste extends BaseTests {
     @Test
     public void persistirLoja() {

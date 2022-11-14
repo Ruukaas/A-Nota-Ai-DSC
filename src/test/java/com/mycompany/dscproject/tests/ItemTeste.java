@@ -9,9 +9,6 @@ import java.util.Calendar;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- * @author Lucas Gomes
- **/
 public class ItemTeste extends BaseTests {
     @Test
     public void persistirItem() {

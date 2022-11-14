@@ -4,9 +4,6 @@ import com.mycompany.dscproject.model.Cliente;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- * @author Lucas Gomes
- **/
 public class ClienteTeste extends BaseTests {
     @Test
     public void persistirCliente() {

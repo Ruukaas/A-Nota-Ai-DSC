@@ -4,9 +4,6 @@ import com.mycompany.dscproject.model.Vendedor;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- * @author Lucas Gomes
- **/
 public class VendedorTeste extends BaseTests {
     @Test
     public void persistirVendedor() {

@@ -8,9 +8,6 @@ import java.util.Calendar;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- * @author Lucas Gomes
- **/
 public class NotaFiscalTeste extends BaseTests {
     @Test
     public void persistirNotaFiscal() {
