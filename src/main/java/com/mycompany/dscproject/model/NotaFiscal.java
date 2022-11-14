@@ -30,11 +30,12 @@ public class NotaFiscal implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "notaFiscal", fetch = FetchType.EAGER)
     private List<Item> itens;
     
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
-    @JoinColumn(name = "ID_usuario", referencedColumnName = "codigo")
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "codigo_usuario", referencedColumnName = "codigo")
     private Usuario donoDaNota;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = true)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "codigo_loja", referencedColumnName = "codigo")
     private Loja loja;
     
     @Column(name = "chaveDeAcesso", nullable = false)

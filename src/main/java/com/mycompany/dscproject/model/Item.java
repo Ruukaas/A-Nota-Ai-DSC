@@ -22,20 +22,20 @@ public class Item implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
-    @JoinColumn(name = "valor_codigo", referencedColumnName = "codigo")
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "codigo_preco", referencedColumnName = "codigo")
     private Preco valorUnitario;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
-    @JoinColumn(name = "produto_codigo", referencedColumnName = "codigo")
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "codigo_produto", referencedColumnName = "codigo")
     private Produto produto;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
-    @JoinColumn(name = "localDeVenda_codigo", referencedColumnName = "codigo")
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "codigo_loja", referencedColumnName = "codigo")
     private Loja localDeVenda;
         
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
-    @JoinColumn(name = "notaFiscal_codigo", referencedColumnName = "codigo")
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "codigo_notafiscal", referencedColumnName = "codigo")
     private NotaFiscal notaFiscal;
 
     @Column(name = "quantidade", nullable = false)

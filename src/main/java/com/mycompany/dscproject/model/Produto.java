@@ -35,10 +35,10 @@ public class Produto implements Serializable {
     @JoinTable(
         name = "TB_PRODUTOS_LOJAS", 
         joinColumns = {
-            @JoinColumn(name = "ID_Produto")
+            @JoinColumn(name = "codigo_produto")
         },
         inverseJoinColumns = {
-            @JoinColumn(name = "ID_Loja")
+            @JoinColumn(name = "codigo_loja")
         }
     )
     private List<Loja> lojas;
