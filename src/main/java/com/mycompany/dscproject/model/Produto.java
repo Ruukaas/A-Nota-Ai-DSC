@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @Entity
 public class Produto implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "produto")

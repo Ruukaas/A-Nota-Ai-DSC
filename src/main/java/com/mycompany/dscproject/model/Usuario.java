@@ -28,7 +28,7 @@ import jakarta.persistence.OneToMany;
 )
 public class Usuario implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long codigo;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "donoDaNota", fetch = FetchType.LAZY)

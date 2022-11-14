@@ -19,7 +19,7 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class Item implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)

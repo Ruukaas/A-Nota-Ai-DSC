@@ -21,7 +21,7 @@ import java.util.Date;
 @Entity
 public class Preco implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
 
     @OneToOne(mappedBy = "valorUnitario", optional = true)
