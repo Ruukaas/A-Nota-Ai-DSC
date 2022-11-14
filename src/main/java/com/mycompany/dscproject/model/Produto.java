@@ -92,7 +92,6 @@ public class Produto implements Serializable {
         if (lojas == null) { lojas = new ArrayList<>(); }
         
         lojas.add(l);
-        l.adicionarProduto(this);
     }
     
     public String getNome() {
