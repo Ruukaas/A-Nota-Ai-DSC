@@ -31,7 +31,7 @@ public class Produto implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "produto")
     private List<Item> itens;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
         name = "TB_PRODUTOS_LOJAS", 
         joinColumns = {
