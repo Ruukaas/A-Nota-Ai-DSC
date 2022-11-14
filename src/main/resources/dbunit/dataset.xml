@@ -1,3 +1,173 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
+    <!-- Usuario Id = 1 -->
+    <Usuario 
+        discriminador_usuario = "Cliente"
+        nome = "José Luiz"
+        login = "luizjose123"
+        sobrenome = "Silva Filho"
+        email = "joseluiz@gmail.com"
+        senha = "123456789joseluiz"
+        telefone = "40028922"
+    />
+    <!-- Usuario Id = 2 -->
+    <Usuario 
+        discriminador_usuario = "Vendedor"
+        nome = "Pedro Ricardo"
+        login = "pedroRic147"
+        sobrenome = "Gomes Santos"
+        email = "pRickGS@gmail.com"
+        senha = "SGRP159"
+        telefone = "34487898"
+    />
+    <!-- Usuario Id = 3 -->
+    <Usuario
+        discriminador_usuario = "Cliente"
+        nome = "Laura Nunes"
+        login = "laurinha123"
+        sobrenome = "Nascimento"
+        email = "lauNunesNasc2001@gmail.com"
+        senha = "Lau1204"
+        telefone = "98561478"
+    />
+    
+    <!-- Cliente codigo = 1 -->
+    <Cliente
+        codigo_usuario = "1"
+        cpf = "169.853.330-60"
+    />
+
+    <!-- Cliente codigo = 3 -->
+    <Cliente
+        codigo_usuario = "3"
+        cpf = "840.136.830-83"
+    />
+
+    <!-- Vendedor codigo = 2 -->
+    <Vendedor
+        codigo_usuario = "2"
+        cnpj = "32.227.328/0001-31"
+    />
+
+    <!-- Loja codigo = 1 -->
+    <Loja 
+        CNPJ = "37.695.129/0001-71"
+        Endereco = "Rua José de Oliveira 18 - Recife"
+        Nome ="Hyper food"
+    />
+
+    <!-- Loja codigo = 2 -->
+    <Loja 
+        CNPJ = "09.382.251/0001-52"
+        Endereco = "Rua dos Sete Desejos n 77 - Recife"
+        Nome = "Eletronic Arts"
+    />
+
+    <!-- Loja codigo = 3 -->
+    <Loja 
+        CNPJ = "62.332.108/0001-39"
+        Endereco = "Rua das Ninfas 99 - Recife"
+        Nome = "Bar do Ceu"
+    />
+    
+    <!-- Produto codigo = 1 -->
+    <Produto
+        nome = "Barra de chocolate"
+    />
+
+    <!-- Produto codigo = 2 -->
+    <Produto
+        nome = "Televisão 34 "
+    />
+
+    <!-- Produto codigo = 3 -->
+    <Produto
+        nome = "Trident"
+    />
+    
+    <TB_PRODUTOS_LOJAS 
+        codigo_produto = "1"
+        codigo_loja = "1"
+    />
+
+    <TB_PRODUTOS_LOJAS 
+        codigo_produto = "2"
+        codigo_loja = "2"
+    />
+    
+    <TB_PRODUTOS_LOJAS 
+        codigo_produto = "3"
+        codigo_loja = "1"
+    />
+    
+    <!-- Nota fiscal codigo = 1 -->
+    <NotaFiscal
+        codigo_usuario = "1"
+        codigo_loja = "1"
+        chaveDeAcesso = "kaienhdaisdjkdfuyks8205"
+        dataEmissao = "2022-11-13 10:00:00.344"
+        valor = "99.59"
+    />
+    <!-- Nota fiscal codigo = 2 -->
+    <NotaFiscal
+        codigo_usuario = "3"
+        codigo_loja = "2"
+        chaveDeAcesso = "duekloshekldhy20458sak"
+        dataEmissao = "2020-10-01 10:00:00.344"
+        valor = "13.59"
+    />
+    <!-- Nota fiscal codigo = 3 -->
+    <NotaFiscal
+        codigo_usuario = "3"
+        codigo_loja = "1"
+        chaveDeAcesso = "ow92p0dnjh2nmso038"
+        dataEmissao = "2021-01-01 10:00:00.344"
+        valor = "147.89"
+    />
+       
+    <!-- Preco codigo = 1 -->
+    <Preco 
+        codigo_produto = "1"
+        valor = "34.99"
+        dataDeRegistro = "2022-11-03 10:00:00.344"
+    />
+
+    <!-- Preco codigo = 2 -->
+    <Preco 
+        codigo_produto = "2"
+        valor = "134.99"
+        dataDeRegistro = "2022-11-03 10:00:00.344"
+    />
+
+    <!-- Preco codigo = 3 -->
+    <Preco 
+        codigo_produto = "3"
+        valor = "4.99"
+        dataDeRegistro = "2022-11-03 10:00:00.344"
+    />
+    
+    <!-- Item codigo = 1 -->
+    <Item 
+        codigo_preco = "1"
+        codigo_produto = "1"
+        codigo_loja = "1"
+        codigo_notafiscal = "1"
+        quantidade = "3"
+    />
+    <!-- Item codigo = 2 -->
+    <Item 
+        codigo_preco = "2"
+        codigo_produto = "2"
+        codigo_loja = "2"
+        codigo_notafiscal = "1"
+        quantidade = "1"
+    />
+    <!-- Item codigo = 3 -->
+    <Item 
+        codigo_preco = "3"
+        codigo_produto = "3"
+        codigo_loja = "1"
+        codigo_notafiscal = "3"
+        quantidade = "5"
+    />    
 </dataset>
