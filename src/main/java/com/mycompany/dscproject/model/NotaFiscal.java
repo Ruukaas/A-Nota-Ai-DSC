@@ -11,6 +11,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -25,8 +27,8 @@ import java.util.Date;
 @NamedQueries(
         {
             @NamedQuery(
-                    name = "Categoria.PorLoja",
-                    query = "SELECT c FROM NotaFiscal c WHERE c.loja.nome LIKE :loja ORDER BY c.id"
+                    name = "NotaFiscal.byChaveDeAcesso",
+                    query = "SELECT c FROM NotaFiscal c WHERE c.chaveDeAcesso LIKE :chave"
             )
         }
 )

@@ -13,6 +13,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 
 /**
@@ -29,8 +31,8 @@ import jakarta.persistence.OneToMany;
 @NamedQueries(
         {
             @NamedQuery(
-                    name = "Categoria.PorNome",
-                    query = "SELECT c FROM Usuario c WHERE c.nome LIKE :nome ORDER BY c.id"
+                    name = "Usuario.byNome",
+                    query = "SELECT c FROM Usuario c WHERE c.nome LIKE :nome"
             )
         }
 )

@@ -2,6 +2,9 @@ package com.mycompany.dscproject.tests;
 
 import com.mycompany.dscproject.model.Cliente;
 import com.mycompany.dscproject.model.NotaFiscal;
+
+import jakarta.persistence.TypedQuery;
+
 import com.mycompany.dscproject.model.Item;
 import com.mycompany.dscproject.model.Loja;
 import java.util.Calendar;
@@ -66,5 +69,43 @@ public class NotaFiscalTeste extends BaseTests {
         assertEquals(c.getTime().toString(), notaFiscal.getDataEmissao().toString());
         
         assertEquals(Double.valueOf(99.59), notaFiscal.getValor());
+    }
+
+    @Test
+    public void atualizarNotaFiscal() {
+        TypedQuery<NotaFiscal> query = em.createNamedQuery("NotaFiscal.byChaveDeAcesso", NotaFiscal.class);
+        query.setParameter("chave", "kaienhdaisdjkdfuyks8205");
+        NotaFiscal notaFiscal = query.getSingleResult();
+        assertNotNull(notaFiscal);
+        notaFiscal.setChaveDeAcesso("xajumxzhycdsowehsak129xda");
+        em.flush();
+        assertEquals(0, query.getResultList().size());
+        query.setParameter("chave", "xajumxzhycdsowehsak129xda");
+        notaFiscal = query.getSingleResult();
+        assertNotNull(notaFiscal);
+    }
+
+    @Test
+    public void atualizarNotaFiscalMerge() {
+        TypedQuery<NotaFiscal> query = em.createNamedQuery("NotaFiscal.byChaveDeAcesso", NotaFiscal.class);
+        query.setParameter("chave", "duekloshekldhy20458sak");
+        NotaFiscal notaFiscal = query.getSingleResult();
+        assertNotNull(notaFiscal);
+        notaFiscal.setChaveDeAcesso("sdsadqwxz258asdsasadcoi");
+        em.clear();       
+        em.merge(notaFiscal);
+        em.flush();
+        assertEquals(0, query.getResultList().size());
+    }
+
+    @Test
+    public void removerNotaFiscal() {
+        TypedQuery<NotaFiscal> query = em.createNamedQuery("NotaFiscal.byChaveDeAcesso", NotaFiscal.class);
+        query.setParameter("chave", "duekloshekldhy20458sak");
+        NotaFiscal notaFiscal = query.getSingleResult();
+        assertNotNull(notaFiscal);
+        em.remove(notaFiscal);
+        em.flush();
+        assertEquals(0, query.getResultList().size());
     }
 }

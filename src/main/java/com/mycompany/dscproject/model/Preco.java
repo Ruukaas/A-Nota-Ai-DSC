@@ -9,6 +9,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -22,8 +24,8 @@ import java.util.Date;
 @NamedQueries(
         {
             @NamedQuery(
-                    name = "Categoria.PorValor",
-                    query = "SELECT c FROM Preco c WHERE c.valor LIKE :valor ORDER BY c.id"
+                    name = "Preco.byValor",
+                    query = "SELECT c FROM Preco c WHERE c.valor LIKE :valor "
             )
         }
 )

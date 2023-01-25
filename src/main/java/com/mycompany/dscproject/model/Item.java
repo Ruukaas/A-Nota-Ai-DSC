@@ -10,6 +10,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
 
 /**
@@ -20,8 +22,8 @@ import jakarta.persistence.OneToOne;
 @NamedQueries(
         {
             @NamedQuery(
-                    name = "Categoria.PorNome",
-                    query = "SELECT c FROM Item c WHERE c.produto.nome LIKE :nome ORDER BY c.id"
+                    name = "Item.byQtde",
+                    query = "SELECT c FROM Item c WHERE c.quantidade LIKE :qtde"
             )
         }
 )

@@ -4,6 +4,9 @@ import com.mycompany.dscproject.model.Item;
 import com.mycompany.dscproject.model.Loja;
 import com.mycompany.dscproject.model.Preco;
 import com.mycompany.dscproject.model.Produto;
+
+import jakarta.persistence.TypedQuery;
+
 import com.mycompany.dscproject.model.NotaFiscal;
 import java.util.Calendar;
 import org.junit.Test;
@@ -57,5 +60,46 @@ public class ItemTeste extends BaseTests {
         assertEquals((long)1, (long)item.getLocalDeVenda().getCodigo());
         assertEquals((long)1, (long)item.getNotaFiscal().getCodigo());
         assertEquals((long)3, (long)item.getQuantidade());
+    }
+
+    @Test
+    public void atualizarItem() {
+        TypedQuery<Item> query = em.createNamedQuery("Item.byQtde", Item.class);
+        query.setParameter("qtde","3");
+        Item item = query.getSingleResult();
+        assertNotNull(item);
+        item.setQuantidade(25);
+        em.flush();
+        assertEquals(0, query.getResultList().size());
+        query.setParameter("qtde", 25);
+        item = query.getSingleResult();
+        assertNotNull(item);
+    }
+
+    @Test
+    public void atualizarItemMerge() {
+        TypedQuery<Item> query = em.createNamedQuery("Item.byQtde", Item.class);
+        query.setParameter("qtde","5");
+        Item item = query.getSingleResult();
+        assertNotNull(item);
+        item.setQuantidade(99);
+        em.clear();
+        em.merge(item);
+        em.flush();
+        assertEquals(0, query.getResultList().size());
+        // query.setParameter("qtde", 99);
+        // item = query.getSingleResult();
+        // assertNotNull(item);
+    }
+
+    @Test
+    public void removerItem() {
+        TypedQuery<Item> query = em.createNamedQuery("Item.byQtde", Item.class);
+        query.setParameter("qtde","5");
+        Item item = query.getSingleResult();
+        assertNotNull(item);
+        em.remove(item);
+        em.flush();
+        assertEquals(0, query.getResultList().size());
     }
 }

@@ -12,6 +12,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import java.util.ArrayList;
 
@@ -23,8 +25,8 @@ import java.util.ArrayList;
 @NamedQueries(
         {
             @NamedQuery(
-                    name = "Categoria.PorNome",
-                    query = "SELECT c FROM Produto c WHERE c.nome LIKE :nome ORDER BY c.id"
+                    name = "Produto.byNome",
+                    query = "SELECT c FROM Produto c WHERE c.nome LIKE :nome"
             )
         }
 )

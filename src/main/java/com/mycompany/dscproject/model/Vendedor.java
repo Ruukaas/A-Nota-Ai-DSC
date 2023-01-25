@@ -3,6 +3,8 @@ package com.mycompany.dscproject.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import java.io.Serializable;
 
@@ -18,8 +20,8 @@ import java.io.Serializable;
 @NamedQueries(
         {
             @NamedQuery(
-                    name = "Categoria.PorCNPJ",
-                    query = "SELECT c FROM Vendedor c WHERE c.cnpj LIKE :cnpj ORDER BY c.id"
+                    name = "Vendedor.byCNPJ",
+                    query = "SELECT c FROM Vendedor c WHERE c.cnpj LIKE :cnpj"
             )
         }
 )

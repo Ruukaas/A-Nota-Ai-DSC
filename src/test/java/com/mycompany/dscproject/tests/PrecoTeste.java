@@ -3,6 +3,9 @@ package com.mycompany.dscproject.tests;
 import com.mycompany.dscproject.model.Item;
 import com.mycompany.dscproject.model.Preco;
 import com.mycompany.dscproject.model.Produto;
+
+import jakarta.persistence.TypedQuery;
+
 import java.util.Calendar;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -37,5 +40,43 @@ public class PrecoTeste extends BaseTests
         Calendar c = Calendar.getInstance();
         c.set(2022, Calendar.NOVEMBER, 3, 10, 0, 0);
         assertEquals(c.getTime().toString(), preco.getDataDeRegistro().toString());
+    }
+
+    @Test
+    public void atualizarPreco() {
+        TypedQuery<Preco> query = em.createNamedQuery("Preco.byValor", Preco.class);
+        query.setParameter("valor", 34.99);
+        Preco preco = query.getSingleResult();
+        assertNotNull(preco);
+        preco.setValor(188.88);
+        em.flush();
+        assertEquals(0, query.getResultList().size());
+        query.setParameter("valor", 188.88);
+        preco = query.getSingleResult();
+        assertNotNull(preco);
+    }
+
+    @Test
+    public void atualizarPrecoMerge() {
+        TypedQuery<Preco> query = em.createNamedQuery("Preco.byValor", Preco.class);
+        query.setParameter("valor", 4.99);
+        Preco preco = query.getSingleResult();
+        assertNotNull(preco);
+        preco.setValor(28.55);
+        em.clear();       
+        em.merge(preco);
+        em.flush();
+        assertEquals(0, query.getResultList().size());
+    }
+
+    @Test
+    public void removerPreco() {
+        TypedQuery<Preco> query = em.createNamedQuery("Preco.byValor", Preco.class);
+        query.setParameter("valor", 4.99);
+        Preco preco = query.getSingleResult();
+        assertNotNull(preco);
+        em.remove(preco);
+        em.flush();
+        assertEquals(0, query.getResultList().size());
     }
 }

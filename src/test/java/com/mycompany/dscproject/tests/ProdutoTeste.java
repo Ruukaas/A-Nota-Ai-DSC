@@ -4,6 +4,9 @@ import com.mycompany.dscproject.model.Item;
 import com.mycompany.dscproject.model.Loja;
 import com.mycompany.dscproject.model.Preco;
 import com.mycompany.dscproject.model.Produto;
+
+import jakarta.persistence.TypedQuery;
+
 import java.util.Calendar;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -58,5 +61,44 @@ public class ProdutoTeste extends BaseTests {
         
         assertNotNull(produto);
         assertEquals("Barra de chocolate", produto.getNome());
+    }
+
+
+    @Test
+    public void atualizarProduto() {
+        TypedQuery<Produto> query = em.createNamedQuery("Produto.byNome", Produto.class);
+        query.setParameter("nome", "Barra de chocolate");
+        Produto produto = query.getSingleResult();
+        assertNotNull(produto);
+        produto.setNome("Chocolate em barra");
+        em.flush();
+        assertEquals(0, query.getResultList().size());
+        query.setParameter("nome", "Chocolate em barra");
+        produto = query.getSingleResult();
+        assertNotNull(produto);
+    }
+
+    @Test
+    public void atualizarProdutoMerge() {
+        TypedQuery<Produto> query = em.createNamedQuery("Produto.byNome", Produto.class);
+        query.setParameter("nome", "Televisão 34");
+        Produto produto = query.getSingleResult();
+        assertNotNull(produto);
+        produto.setNome("Televisão LCD 34 Polegadas");
+        em.clear();       
+        em.merge(produto);
+        em.flush();
+        assertEquals(0, query.getResultList().size());
+    }
+
+    @Test
+    public void removerProduto() {
+        TypedQuery<Produto> query = em.createNamedQuery("Produto.byNome", Produto.class);
+        query.setParameter("nome", "Televisão 34");
+        Produto produto = query.getSingleResult();
+        assertNotNull(produto);
+        em.remove(produto);
+        em.flush();
+        assertEquals(0, query.getResultList().size());
     }
 }

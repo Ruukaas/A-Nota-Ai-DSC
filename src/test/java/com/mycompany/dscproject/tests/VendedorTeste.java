@@ -1,6 +1,9 @@
 package com.mycompany.dscproject.tests;
 
 import com.mycompany.dscproject.model.Vendedor;
+
+import jakarta.persistence.TypedQuery;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -35,4 +38,47 @@ public class VendedorTeste extends BaseTests {
         assertEquals("34487898", vendedor.getTelefone());
         assertEquals("32.227.328/0001-31", vendedor.getCNPJ());
     }
+
+    @Test
+    public void atualizarVendedor() {
+        
+        TypedQuery<Vendedor> query = em.createNamedQuery("Vendedor.byCNPJ", Vendedor.class);
+        query.setParameter("cnpj", "32.227.328/0001-31");
+        Vendedor vendedor = query.getSingleResult();
+        assertNotNull(vendedor);
+        vendedor.setCNPJ("45.123.589/1293-55");
+        em.flush();
+        assertEquals(0, query.getResultList().size());
+        query.setParameter("cnpj", "45.123.589/1293-55");
+        vendedor = query.getSingleResult();
+        assertNotNull(vendedor);
+    }
+
+    @Test
+    public void atualizarVendedorMerge() {
+        
+        TypedQuery<Vendedor> query = em.createNamedQuery("Vendedor.byCNPJ", Vendedor.class);
+        query.setParameter("cnpj", "32.227.328/0001-31");
+        Vendedor vendedor = query.getSingleResult();
+        assertNotNull(vendedor);
+        vendedor.setCNPJ("45.123.589/1293-55");
+        em.clear();       
+        em.merge(vendedor);
+        em.flush();
+        assertEquals(0, query.getResultList().size());
+    }
+
+    @Test
+    public void removerVendedor() {
+        
+        TypedQuery<Vendedor> query = em.createNamedQuery("Vendedor.byCNPJ", Vendedor.class);
+        query.setParameter("cnpj", "32.227.328/0001-31");
+        Vendedor vendedor = query.getSingleResult();
+        assertNotNull(vendedor);
+        em.remove(vendedor);
+        em.flush();
+        assertEquals(0, query.getResultList().size());
+    }
+
+    
 }
