@@ -15,6 +15,7 @@ import static org.junit.Assert.*;
 public class ItemTeste extends BaseTests {
     @Test
     public void persistirItem() {
+        logger.info("Executando persistirItem()");
         Item item = new Item();
         
         Preco preco = new Preco();
@@ -52,6 +53,7 @@ public class ItemTeste extends BaseTests {
     
     @Test
     public void consultarItem() {
+        logger.info("Executando consultarItem()");
         Item item = em.find(Item.class, 1L);
         
         assertNotNull(item);
@@ -64,38 +66,45 @@ public class ItemTeste extends BaseTests {
 
     @Test
     public void atualizarItem() {
-        TypedQuery<Item> query = em.createNamedQuery("Item.byQtde", Item.class);
-        query.setParameter("qtde","3");
+        logger.info("Executando atualizarItem");
+        
+        Integer novaQuantidade = Integer.valueOf(15);
+        
+        TypedQuery<Item> query = em.createNamedQuery("Item.porQuantidade", Item.class);
+        query.setParameter("qtde", Integer.valueOf(1));
         Item item = query.getSingleResult();
         assertNotNull(item);
-        item.setQuantidade(25);
+        item.setQuantidade(novaQuantidade);
         em.flush();
         assertEquals(0, query.getResultList().size());
-        query.setParameter("qtde", 25);
+        query.setParameter("qtde", novaQuantidade);
         item = query.getSingleResult();
         assertNotNull(item);
     }
 
     @Test
     public void atualizarItemMerge() {
-        TypedQuery<Item> query = em.createNamedQuery("Item.byQtde", Item.class);
-        query.setParameter("qtde","5");
+        logger.info("Executando atualizarItemMerge()");
+        
+        Integer novaQuantidade = Integer.valueOf(25);
+        
+        TypedQuery<Item> query = em.createNamedQuery("Item.porQuantidade", Item.class);
+        query.setParameter("qtde", Integer.valueOf(5));
         Item item = query.getSingleResult();
         assertNotNull(item);
-        item.setQuantidade(99);
+        item.setQuantidade(novaQuantidade);
         em.clear();
         em.merge(item);
         em.flush();
         assertEquals(0, query.getResultList().size());
-        // query.setParameter("qtde", 99);
-        // item = query.getSingleResult();
-        // assertNotNull(item);
     }
 
     @Test
     public void removerItem() {
-        TypedQuery<Item> query = em.createNamedQuery("Item.byQtde", Item.class);
-        query.setParameter("qtde","5");
+        logger.info("Executando removerItem()");
+        
+        TypedQuery<Item> query = em.createNamedQuery("Item.porQuantidade", Item.class);
+        query.setParameter("qtde", Integer.valueOf(10));
         Item item = query.getSingleResult();
         assertNotNull(item);
         em.remove(item);

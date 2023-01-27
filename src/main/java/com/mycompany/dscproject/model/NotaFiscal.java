@@ -27,8 +27,8 @@ import java.util.Date;
 @NamedQueries(
         {
             @NamedQuery(
-                    name = "NotaFiscal.byChaveDeAcesso",
-                    query = "SELECT c FROM NotaFiscal c WHERE c.chaveDeAcesso LIKE :chave"
+                    name = "NotaFiscal.porChaveDeAcesso",
+                    query = "SELECT n FROM NotaFiscal n WHERE n.chaveDeAcesso LIKE :chaveDeAcesso"
             )
         }
 )
@@ -37,14 +37,14 @@ public class NotaFiscal implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "notaFiscal", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "notaFiscal", fetch = FetchType.EAGER)
     private List<Item> itens;
     
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "codigo_usuario", referencedColumnName = "codigo")
     private Usuario donoDaNota;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "codigo_loja", referencedColumnName = "codigo")
     private Loja loja;
     

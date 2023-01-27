@@ -20,7 +20,7 @@ import java.io.Serializable;
 @NamedQueries(
         {
             @NamedQuery(
-                    name = "Cliente.byCPF",
+                    name = "Cliente.porCPF",
                     query = "SELECT c FROM Cliente c WHERE c.cpf LIKE :cpf "
             )
         }

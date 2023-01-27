@@ -24,8 +24,8 @@ import java.util.Date;
 @NamedQueries(
         {
             @NamedQuery(
-                    name = "Preco.byValor",
-                    query = "SELECT c FROM Preco c WHERE c.valor LIKE :valor "
+                    name = "Preco.porValor",
+                    query = "SELECT p FROM Preco p WHERE p.valor = :valor "
             )
         }
 )

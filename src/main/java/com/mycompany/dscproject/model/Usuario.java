@@ -31,8 +31,8 @@ import jakarta.persistence.OneToMany;
 @NamedQueries(
         {
             @NamedQuery(
-                    name = "Usuario.byNome",
-                    query = "SELECT c FROM Usuario c WHERE c.nome LIKE :nome"
+                    name = "Usuario.porNome",
+                    query = "SELECT u FROM Usuario u WHERE u.nome LIKE :nome"
             )
         }
 )

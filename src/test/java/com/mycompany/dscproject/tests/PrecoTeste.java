@@ -14,6 +14,7 @@ public class PrecoTeste extends BaseTests
 {
     @Test
     public void persistirPreco() {
+        logger.info("Executando persistirPreco()");
         Preco preco = new Preco();
         
         preco.setValor(Double.valueOf(12.00));
@@ -32,6 +33,7 @@ public class PrecoTeste extends BaseTests
     
     @Test
     public void consultarPreco() {
+        logger.info("Executando consultarPreco()");
         Preco preco = em.find(Preco.class, 1L);
         
         assertNotNull(preco);
@@ -44,25 +46,43 @@ public class PrecoTeste extends BaseTests
 
     @Test
     public void atualizarPreco() {
-        TypedQuery<Preco> query = em.createNamedQuery("Preco.byValor", Preco.class);
-        query.setParameter("valor", 34.99);
+        logger.info("Executando atualizarPreco()");
+        
+        Double novoValor = Double.valueOf(135.00);
+        Calendar c = Calendar.getInstance();
+        c.set(2022, Calendar.JANUARY, 27, 12, 0, 0);
+        
+        TypedQuery<Preco> query = em.createNamedQuery("Preco.porValor", Preco.class);
+        query.setParameter("valor", Double.valueOf(134.99));
         Preco preco = query.getSingleResult();
         assertNotNull(preco);
-        preco.setValor(188.88);
+        
+        preco.setValor(novoValor);
+        preco.setDataDeRegistro(c.getTime());
+        
         em.flush();
         assertEquals(0, query.getResultList().size());
-        query.setParameter("valor", 188.88);
+        query.setParameter("valor", novoValor);
         preco = query.getSingleResult();
         assertNotNull(preco);
     }
 
     @Test
     public void atualizarPrecoMerge() {
-        TypedQuery<Preco> query = em.createNamedQuery("Preco.byValor", Preco.class);
-        query.setParameter("valor", 4.99);
+        logger.info("Executando atualizarPrecoMerge()");
+        
+        Double novoValor = Double.valueOf(95.00);
+        Calendar c = Calendar.getInstance();
+        c.set(2023, Calendar.JANUARY, 27, 13, 0, 20);
+        
+        TypedQuery<Preco> query = em.createNamedQuery("Preco.porValor", Preco.class);
+        query.setParameter("valor", 94.99);
         Preco preco = query.getSingleResult();
         assertNotNull(preco);
-        preco.setValor(28.55);
+        
+        preco.setValor(novoValor);
+        preco.setDataDeRegistro(c.getTime());
+        
         em.clear();       
         em.merge(preco);
         em.flush();
@@ -71,8 +91,10 @@ public class PrecoTeste extends BaseTests
 
     @Test
     public void removerPreco() {
-        TypedQuery<Preco> query = em.createNamedQuery("Preco.byValor", Preco.class);
-        query.setParameter("valor", 4.99);
+        logger.info("Executando removerPreco()");
+        
+        TypedQuery<Preco> query = em.createNamedQuery("Preco.porValor", Preco.class);
+        query.setParameter("valor", 5.99);
         Preco preco = query.getSingleResult();
         assertNotNull(preco);
         em.remove(preco);

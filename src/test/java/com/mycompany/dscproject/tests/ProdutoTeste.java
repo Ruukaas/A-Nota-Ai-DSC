@@ -14,6 +14,7 @@ import static org.junit.Assert.*;
 public class ProdutoTeste extends BaseTests {
     @Test
     public void persistirProduto() {
+        logger.info("Executando persistirProduto()");
         Produto produto = new Produto();
         
         produto.setNome("Cadeira Gamer");
@@ -57,6 +58,7 @@ public class ProdutoTeste extends BaseTests {
     
     @Test
     public void consultarProduto() {
+        logger.info("Executando consultarProduto()");
         Produto produto = em.find(Produto.class, 1L);
         
         assertNotNull(produto);
@@ -66,25 +68,29 @@ public class ProdutoTeste extends BaseTests {
 
     @Test
     public void atualizarProduto() {
-        TypedQuery<Produto> query = em.createNamedQuery("Produto.byNome", Produto.class);
-        query.setParameter("nome", "Barra de chocolate");
+        logger.info("Executando atualizarProduto");
+        
+        TypedQuery<Produto> query = em.createNamedQuery("Produto.porNome", Produto.class);
+        query.setParameter("nome", "Televisão 34 polegadas");
         Produto produto = query.getSingleResult();
         assertNotNull(produto);
-        produto.setNome("Chocolate em barra");
+        produto.setNome("Televisão 55 polegadas");
         em.flush();
         assertEquals(0, query.getResultList().size());
-        query.setParameter("nome", "Chocolate em barra");
+        query.setParameter("nome", "Televisão 55 polegadas");
         produto = query.getSingleResult();
         assertNotNull(produto);
     }
 
     @Test
     public void atualizarProdutoMerge() {
-        TypedQuery<Produto> query = em.createNamedQuery("Produto.byNome", Produto.class);
-        query.setParameter("nome", "Televisão 34");
+        logger.info("Executando atualizarProdutoMerge()");
+        
+        TypedQuery<Produto> query = em.createNamedQuery("Produto.porNome", Produto.class);
+        query.setParameter("nome", "Printed Circuit Board Gigabyte");
         Produto produto = query.getSingleResult();
         assertNotNull(produto);
-        produto.setNome("Televisão LCD 34 Polegadas");
+        produto.setNome("Placa-Mãe Gigabyte");
         em.clear();       
         em.merge(produto);
         em.flush();
@@ -93,8 +99,8 @@ public class ProdutoTeste extends BaseTests {
 
     @Test
     public void removerProduto() {
-        TypedQuery<Produto> query = em.createNamedQuery("Produto.byNome", Produto.class);
-        query.setParameter("nome", "Televisão 34");
+        TypedQuery<Produto> query = em.createNamedQuery("Produto.porNome", Produto.class);
+        query.setParameter("nome", "Garrafa Folgosa");
         Produto produto = query.getSingleResult();
         assertNotNull(produto);
         em.remove(produto);

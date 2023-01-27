@@ -14,6 +14,7 @@ import static org.junit.Assert.*;
 public class NotaFiscalTeste extends BaseTests {
     @Test
     public void persistirNotaFiscal() {
+        logger.info("Executando persistirNotaFiscal()");
         NotaFiscal notaFiscal = new NotaFiscal();
         
         notaFiscal.setChaveDeAcesso("GPTXGPJ7RXU9T2JBX0LR");
@@ -57,6 +58,7 @@ public class NotaFiscalTeste extends BaseTests {
     
     @Test
     public void consultarNotaFiscal() {
+        logger.info("Executando consultarNotaFiscal()");
         NotaFiscal notaFiscal = em.find(NotaFiscal.class, 1L);
         
         assertNotNull(notaFiscal);
@@ -73,25 +75,44 @@ public class NotaFiscalTeste extends BaseTests {
 
     @Test
     public void atualizarNotaFiscal() {
-        TypedQuery<NotaFiscal> query = em.createNamedQuery("NotaFiscal.byChaveDeAcesso", NotaFiscal.class);
-        query.setParameter("chave", "kaienhdaisdjkdfuyks8205");
+        logger.info("Executando atualizarNotaFiscal()");
+
+        Calendar c = Calendar.getInstance();
+        c.set(2022, Calendar.JANUARY, 15, 11, 45, 0);
+        
+        TypedQuery<NotaFiscal> query = em.createNamedQuery("NotaFiscal.porChaveDeAcesso", NotaFiscal.class);
+        query.setParameter("chaveDeAcesso", "duekloshekldhy20458sak");
         NotaFiscal notaFiscal = query.getSingleResult();
         assertNotNull(notaFiscal);
-        notaFiscal.setChaveDeAcesso("xajumxzhycdsowehsak129xda");
+        
+        notaFiscal.setChaveDeAcesso("06be7fa40ef1c818a299b2ab159b71f1");
+        notaFiscal.setDataEmissao(c.getTime());
+        notaFiscal.setValor(Double.valueOf(125.25));
+        
         em.flush();
         assertEquals(0, query.getResultList().size());
-        query.setParameter("chave", "xajumxzhycdsowehsak129xda");
+        query.setParameter("chaveDeAcesso", "06be7fa40ef1c818a299b2ab159b71f1");
         notaFiscal = query.getSingleResult();
         assertNotNull(notaFiscal);
     }
 
     @Test
     public void atualizarNotaFiscalMerge() {
-        TypedQuery<NotaFiscal> query = em.createNamedQuery("NotaFiscal.byChaveDeAcesso", NotaFiscal.class);
-        query.setParameter("chave", "duekloshekldhy20458sak");
+        logger.info("Executando atualizarNotaFiscalMerge()");
+
+        Calendar c = Calendar.getInstance();
+        c.set(2023, Calendar.JANUARY, 16, 13, 35, 25);
+        
+        TypedQuery<NotaFiscal> query = em.createNamedQuery("NotaFiscal.porChaveDeAcesso", NotaFiscal.class);
+        query.setParameter("chaveDeAcesso", "ow92p0dnjh2nmso038");
+        
         NotaFiscal notaFiscal = query.getSingleResult();
         assertNotNull(notaFiscal);
-        notaFiscal.setChaveDeAcesso("sdsadqwxz258asdsasadcoi");
+        
+        notaFiscal.setChaveDeAcesso("a7015f75ed0758ad383690f428949395");
+        notaFiscal.setDataEmissao(c.getTime());
+        notaFiscal.setValor(Double.valueOf(157.35));
+        
         em.clear();       
         em.merge(notaFiscal);
         em.flush();
@@ -100,8 +121,8 @@ public class NotaFiscalTeste extends BaseTests {
 
     @Test
     public void removerNotaFiscal() {
-        TypedQuery<NotaFiscal> query = em.createNamedQuery("NotaFiscal.byChaveDeAcesso", NotaFiscal.class);
-        query.setParameter("chave", "duekloshekldhy20458sak");
+        TypedQuery<NotaFiscal> query = em.createNamedQuery("NotaFiscal.porChaveDeAcesso", NotaFiscal.class);
+        query.setParameter("chaveDeAcesso", "43e85df6a0d958387cc6690df88f2854");
         NotaFiscal notaFiscal = query.getSingleResult();
         assertNotNull(notaFiscal);
         em.remove(notaFiscal);

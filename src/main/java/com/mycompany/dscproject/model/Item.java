@@ -22,8 +22,8 @@ import jakarta.persistence.OneToOne;
 @NamedQueries(
         {
             @NamedQuery(
-                    name = "Item.byQtde",
-                    query = "SELECT c FROM Item c WHERE c.quantidade LIKE :qtde"
+                    name = "Item.porQuantidade",
+                    query = "SELECT i FROM Item i WHERE i.quantidade = :qtde"
             )
         }
 )
@@ -32,19 +32,19 @@ public class Item implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "codigo_preco", referencedColumnName = "codigo")
     private Preco valorUnitario;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "codigo_produto", referencedColumnName = "codigo")
     private Produto produto;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "codigo_loja", referencedColumnName = "codigo")
     private Loja localDeVenda;
         
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "codigo_notafiscal", referencedColumnName = "codigo")
     private NotaFiscal notaFiscal;
 

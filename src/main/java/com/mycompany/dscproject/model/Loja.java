@@ -23,8 +23,8 @@ import java.util.ArrayList;
 @NamedQueries(
         {
             @NamedQuery(
-                    name = "Loja.byNome",
-                    query = "SELECT c FROM Loja c WHERE c.nome LIKE :nome"
+                    name = "Loja.porNome",
+                    query = "SELECT l FROM Loja l WHERE l.nome LIKE :nome"
             )
         }
 )

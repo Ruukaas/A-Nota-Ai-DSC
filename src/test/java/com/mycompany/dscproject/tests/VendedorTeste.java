@@ -10,6 +10,7 @@ import static org.junit.Assert.*;
 public class VendedorTeste extends BaseTests {
     @Test
     public void persistirVendedor() {
+        logger.info("Executando persistirVendedor()");
         Vendedor vendedor = new Vendedor();
         
         vendedor.setNome("Aline Mirella");
@@ -18,6 +19,7 @@ public class VendedorTeste extends BaseTests {
         vendedor.setEmail("mirellaaline12@outlook.com");
         vendedor.setSenha("mirellaaline21");
         vendedor.setTelefone("(81) 98659-6168");
+        vendedor.setCNPJ("63.502.932/0001-52");
         
         em.persist(vendedor);
         em.flush();
@@ -27,6 +29,7 @@ public class VendedorTeste extends BaseTests {
     
     @Test
     public void consultarVendedor() {
+        logger.info("Executando consultarVendedor()");
         Vendedor vendedor = em.find(Vendedor.class, 2L);
         
         assertNotNull(vendedor);
@@ -41,28 +44,28 @@ public class VendedorTeste extends BaseTests {
 
     @Test
     public void atualizarVendedor() {
-        
-        TypedQuery<Vendedor> query = em.createNamedQuery("Vendedor.byCNPJ", Vendedor.class);
-        query.setParameter("cnpj", "32.227.328/0001-31");
+        logger.info("Executando atualizarVendedor()");
+        TypedQuery<Vendedor> query = em.createNamedQuery("Vendedor.porCNPJ", Vendedor.class);
+        query.setParameter("CNPJ", "32.227.328/0001-31");
         Vendedor vendedor = query.getSingleResult();
         assertNotNull(vendedor);
         vendedor.setCNPJ("45.123.589/1293-55");
         em.flush();
         assertEquals(0, query.getResultList().size());
-        query.setParameter("cnpj", "45.123.589/1293-55");
+        query.setParameter("CNPJ", "45.123.589/1293-55");
         vendedor = query.getSingleResult();
         assertNotNull(vendedor);
     }
 
     @Test
     public void atualizarVendedorMerge() {
-        
-        TypedQuery<Vendedor> query = em.createNamedQuery("Vendedor.byCNPJ", Vendedor.class);
-        query.setParameter("cnpj", "32.227.328/0001-31");
+        logger.info("Executando atualizarVendedorMerge()");
+        TypedQuery<Vendedor> query = em.createNamedQuery("Vendedor.porCNPJ", Vendedor.class);
+        query.setParameter("CNPJ", "08.232.732/0001-19");
         Vendedor vendedor = query.getSingleResult();
         assertNotNull(vendedor);
-        vendedor.setCNPJ("45.123.589/1293-55");
-        em.clear();       
+        vendedor.setCNPJ("26.870.664/0001-03");
+        em.clear(); 
         em.merge(vendedor);
         em.flush();
         assertEquals(0, query.getResultList().size());
@@ -70,15 +73,13 @@ public class VendedorTeste extends BaseTests {
 
     @Test
     public void removerVendedor() {
-        
-        TypedQuery<Vendedor> query = em.createNamedQuery("Vendedor.byCNPJ", Vendedor.class);
-        query.setParameter("cnpj", "32.227.328/0001-31");
+        logger.info("Executando removerVendedor()");
+        TypedQuery<Vendedor> query = em.createNamedQuery("Vendedor.porCNPJ", Vendedor.class);
+        query.setParameter("CNPJ", "53.976.015/0001-56");
         Vendedor vendedor = query.getSingleResult();
         assertNotNull(vendedor);
         em.remove(vendedor);
         em.flush();
         assertEquals(0, query.getResultList().size());
     }
-
-    
 }

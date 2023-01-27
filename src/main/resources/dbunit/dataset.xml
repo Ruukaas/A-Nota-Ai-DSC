@@ -31,6 +31,39 @@
         telefone = "98561478"
     />
     
+    <!-- Usuario Id = 4 -->
+    <Usuario
+        discriminador_usuario = "Cliente"
+        nome = "Fernanda Gonçalves"
+        login = "fealves12"
+        sobrenome = "Alves"
+        email = "fealves12@gmail.com"
+        senha = "fernanda_alves_economiza"
+        telefone = "(81) 93463-8709"
+    />
+    
+    <!-- Usuario Id = 5 -->
+    <Usuario
+        discriminador_usuario = "Vendedor"
+        nome = "Marcelo Carlos"
+        login = "marcelo_carlos"
+        sobrenome = "Ramos"
+        email = "marcelo.carlos.ramos@outlook.com"
+        senha = "piramide123321"
+        telefone = "(92) 99562-6489"
+    />
+    
+    <!-- Usuario Id = 6 -->
+    <Usuario
+        discriminador_usuario = "Vendedor"
+        nome = "Tomás Francisco"
+        login = "tomas_cerveja"
+        sobrenome = "Moreira"
+        email = "tomas.francisco.moreira@yahoo.com"
+        senha = "marvel83dc_comics"
+        telefone = "(21) 98303-0710"
+    />
+    
     <!-- Cliente codigo = 1 -->
     <Cliente
         codigo_usuario = "1"
@@ -42,11 +75,29 @@
         codigo_usuario = "3"
         cpf = "840.136.830-83"
     />
+    
+    <!-- Cliente codigo = 4 -->
+    <Cliente
+        codigo_usuario = "4"
+        cpf = "912.055.613-90"
+    />
 
     <!-- Vendedor codigo = 2 -->
     <Vendedor
         codigo_usuario = "2"
         cnpj = "32.227.328/0001-31"
+    />
+    
+    <!-- Vendedor codigo = 5 -->
+    <Vendedor
+        codigo_usuario = "5"
+        cnpj = "08.232.732/0001-19"
+    />
+    
+    <!-- Vendedor codigo = 6 -->
+    <Vendedor
+        codigo_usuario = "6"
+        cnpj = "53.976.015/0001-56"
     />
 
     <!-- Loja codigo = 1 -->
@@ -70,6 +121,13 @@
         Nome = "Bar do Ceu"
     />
     
+    <!-- Loja codigo = 4 -->
+    <Loja
+        CNPJ = "63.213.002/0001-89"
+        Endereco = "Rua Cento e Trinta e Quatro"
+        Nome = "Empresa de Ventiladores"
+    />
+    
     <!-- Produto codigo = 1 -->
     <Produto
         nome = "Barra de chocolate"
@@ -77,12 +135,22 @@
 
     <!-- Produto codigo = 2 -->
     <Produto
-        nome = "Televisão 34 "
+        nome = "Televisão 34 polegadas"
     />
 
     <!-- Produto codigo = 3 -->
     <Produto
         nome = "Trident"
+    />
+    
+    <!-- Produto codigo = 4 -->
+    <Produto
+        nome = "Printed Circuit Board Gigabyte"
+    />
+    
+    <!-- Produto codigo = 5 -->
+    <Produto
+        nome = "Garrafa Folgosa"
     />
     
     <TB_PRODUTOS_LOJAS 
@@ -98,6 +166,16 @@
     <TB_PRODUTOS_LOJAS 
         codigo_produto = "3"
         codigo_loja = "1"
+    />
+    
+    <TB_PRODUTOS_LOJAS
+        codigo_produto = "4"
+        codigo_loja = "2"
+    />
+    
+    <TB_PRODUTOS_LOJAS
+        codigo_produto = "5"
+        codigo_loja = "3"
     />
     
     <!-- Nota fiscal codigo = 1 -->
@@ -124,6 +202,15 @@
         dataEmissao = "2021-01-01 10:00:00.344"
         valor = "147.89"
     />
+    
+    <!-- Nota fiscal codigo = 4 -->
+    <NotaFiscal
+        codigo_usuario = "4"
+        codigo_loja = "1"
+        chaveDeAcesso = "43e85df6a0d958387cc6690df88f2854"
+        dataEmissao = "2022-01-01 15:00:00.344"
+        valor = "290.09"
+    />
        
     <!-- Preco codigo = 1 -->
     <Preco 
@@ -144,6 +231,20 @@
         codigo_produto = "3"
         valor = "4.99"
         dataDeRegistro = "2022-11-03 10:00:00.344"
+    />
+    
+    <!-- Preco codigo = 4 -->
+    <Preco
+        codigo_produto = "4"
+        valor = "94.99"
+        dataDeRegistro = "2022-11-03 12:00:00.344"
+    />
+    
+    <!-- Preco codigo = 5 -->
+    <Preco
+        codigo_produto = "3"
+        valor = "5.99"
+        dataDeRegistro = "2022-11-04 10:00:00.344"
     />
     
     <!-- Item codigo = 1 -->
@@ -169,5 +270,14 @@
         codigo_loja = "1"
         codigo_notafiscal = "3"
         quantidade = "5"
-    />    
+    />
+    
+    <!-- -->
+    <Item
+        codigo_preco = "1"
+        codigo_produto = "1"
+        codigo_loja = "1"
+        codigo_notafiscal = "1"
+        quantidade = "10"
+    />
 </dataset>

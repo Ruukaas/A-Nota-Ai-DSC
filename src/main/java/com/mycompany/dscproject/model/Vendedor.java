@@ -20,8 +20,8 @@ import java.io.Serializable;
 @NamedQueries(
         {
             @NamedQuery(
-                    name = "Vendedor.byCNPJ",
-                    query = "SELECT c FROM Vendedor c WHERE c.cnpj LIKE :cnpj"
+                    name = "Vendedor.porCNPJ",
+                    query = "SELECT v FROM Vendedor v WHERE v.CNPJ LIKE :CNPJ"
             )
         }
 )

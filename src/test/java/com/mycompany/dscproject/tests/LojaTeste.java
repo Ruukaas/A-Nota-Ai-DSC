@@ -13,6 +13,7 @@ import static org.junit.Assert.*;
 public class LojaTeste extends BaseTests {
     @Test
     public void persistirLoja() {
+        logger.info("Executando persistirLoja()");
         Loja loja = new Loja();
 
         loja.setCNPJ("50.560.744/0001-39");
@@ -53,6 +54,7 @@ public class LojaTeste extends BaseTests {
 
     @Test
     public void consultarLoja() {
+        logger.info("Executando consultarLoja()");
         Loja loja = em.find(Loja.class, 1L);
 
         assertNotNull(loja);
@@ -63,27 +65,42 @@ public class LojaTeste extends BaseTests {
 
     @Test
     public void atualizarLoja() {
-
-        TypedQuery<Loja> query = em.createNamedQuery("Loja.byNome", Loja.class);
-        query.setParameter("nome", "Bar do Ceu");
+        logger.info("Executando atualizarLoja()");
+            
+        String novoNome = "Artes Eletrônicas";
+        String novoEndereco = "Avenida dos Caetés";
+        
+        TypedQuery<Loja> query = em.createNamedQuery("Loja.porNome", Loja.class);
+        query.setParameter("nome", "Eletronic Arts");
+        
         Loja loja = query.getSingleResult();
         assertNotNull(loja);
-        loja.setNome("Pajubar");
+        
+        loja.setNome(novoNome);
+        loja.setEndereco(novoEndereco);
         em.flush();
+        
         assertEquals(0, query.getResultList().size());
-        query.setParameter("nome", "Pajubar");
+        query.setParameter("nome", novoNome);
         loja = query.getSingleResult();
         assertNotNull(loja);
     }
 
     @Test
     public void atualizarLojaMerge() {
-
-        TypedQuery<Loja> query = em.createNamedQuery("Loja.byNome", Loja.class);
-        query.setParameter("nome", "Hyper food");
+        logger.info("Executando atualizarLojaMerge()");
+        
+        String novoNome = "Mercadinho Preço Adequado";
+        String novoEndereco = "Avenida Recife";
+        
+        TypedQuery<Loja> query = em.createNamedQuery("Loja.porNome", Loja.class);
+        query.setParameter("nome", "Mercadinho Preço Baixo");
         Loja loja = query.getSingleResult();
         assertNotNull(loja);
-        loja.setNome("Lanchonete Hyper Food");
+        
+        loja.setNome(novoNome);
+        loja.setEndereco(novoEndereco);
+        
         em.clear();       
         em.merge(loja);
         em.flush();
@@ -92,9 +109,10 @@ public class LojaTeste extends BaseTests {
 
     @Test
     public void removerLoja() {
-
-        TypedQuery<Loja> query = em.createNamedQuery("Loja.byNome", Loja.class);
-        query.setParameter("nome", "Hyper food");
+        logger.info("Executando removerLoja()");
+        
+        TypedQuery<Loja> query = em.createNamedQuery("Loja.porNome", Loja.class);
+        query.setParameter("nome", "Empresa de Ventiladores");
         Loja loja = query.getSingleResult();
         assertNotNull(loja);
         em.remove(loja);
