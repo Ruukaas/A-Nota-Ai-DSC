@@ -9,12 +9,12 @@ import org.junit.Test;
 public class ProdutoJPQL extends BaseTests{
     @Test
     public void ordenacaoProduto() {
+        logger.info("Executando ordenacaoProduto()");
         
         TypedQuery<Produto> query;
-        query = em.createQuery(
-                "SELECT p FROM Produto p ORDER BY p.nome DESC",
-                Produto.class);
+        query = em.createQuery("SELECT p FROM Produto p ORDER BY p.nome DESC", Produto.class);
         List<Produto> produtos = query.getResultList();
+        
         assertEquals(5, produtos.size());
         assertEquals("Trident", produtos.get(0).getNome());
         assertEquals("Televisão 34 polegadas", produtos.get(1).getNome());
