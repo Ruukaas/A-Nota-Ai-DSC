@@ -67,4 +67,16 @@ public abstract class BaseTests
         c.set(Calendar.DAY_OF_MONTH, dia);
         return c.getTime();
     }
+
+    protected Date getDatatime(Integer dia, Integer mes, Integer ano, Integer hora, Integer minutos, Integer segundos, Integer milisegundos) {
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.YEAR, ano);
+        c.set(Calendar.MONTH, mes);
+        c.set(Calendar.DAY_OF_MONTH, dia);
+        c.set(Calendar.HOUR_OF_DAY, hora);
+        c.set(Calendar.MINUTE, minutos);
+        c.set(Calendar.SECOND, segundos);
+        c.set(Calendar.MILLISECOND, milisegundos);
+        return c.getTime();
+    }
 }
