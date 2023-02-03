@@ -11,8 +11,7 @@ public class ProdutoJPQL extends BaseTests{
     public void ordenacaoProduto() {
         logger.info("Executando ordenacaoProduto()");
         
-        TypedQuery<Produto> query;
-        query = em.createQuery("SELECT p FROM Produto p ORDER BY p.nome DESC", Produto.class);
+        TypedQuery<Produto> query = em.createQuery("SELECT p FROM Produto p ORDER BY p.nome DESC", Produto.class);
         List<Produto> produtos = query.getResultList();
         
         assertEquals(5, produtos.size());

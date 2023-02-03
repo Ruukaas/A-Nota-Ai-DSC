@@ -10,10 +10,11 @@ import org.junit.Test;
 public class VendedorJPQL extends BaseTests {
     @Test
     public void quantidadeVendedorComTelefone() {
+        logger.info("Executando quantidadeVendedorComTelefone()");
         
-        TypedQuery<Long> query = em.createQuery(
-                "SELECT COUNT(c) FROM Vendedor c WHERE c.telefone IS NOT NULL", Long.class);
+        TypedQuery<Long> query = em.createQuery("SELECT COUNT(c) FROM Vendedor c WHERE c.telefone IS NOT NULL", Long.class);
         Long resultado = query.getSingleResult();
+        
         assertEquals(Long.valueOf(3), resultado);
     }
 }

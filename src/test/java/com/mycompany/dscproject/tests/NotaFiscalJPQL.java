@@ -16,28 +16,21 @@ public class NotaFiscalJPQL extends BaseTests {
     @Test
     public void notasEntreDatasEspecificas() {
         logger.info("Executando notasEntreDatasEspecificas()");
-        TypedQuery<NotaFiscal> query;
-        query = em.createQuery(
-                "SELECT u FROM NotaFiscal u WHERE u.dataEmissao BETWEEN ?1 AND ?2",
-                NotaFiscal.class
-            );
         
+        TypedQuery<NotaFiscal> query = em.createQuery("SELECT u FROM NotaFiscal u WHERE u.dataEmissao BETWEEN ?1 AND ?2", NotaFiscal.class);
         query.setParameter(1, getData(1, Calendar.OCTOBER, 2020));
         query.setParameter(2, getData(1, Calendar.JANUARY, 2021));
         List<NotaFiscal> notasFiscais = query.getResultList();
+        
         assertEquals(1, notasFiscais.size());
     }
 
     @Test
     public void notafiscalMaisAntiga() {
         logger.info("Executando notafiscalMaisAntiga()");
-        Query query;
-        query = em.createQuery(
-                "SELECT MIN(n.dataEmissao) FROM NotaFiscal n"
-            );
         
+        Query query = em.createQuery("SELECT MIN(n.dataEmissao) FROM NotaFiscal n");
         Object resultado = query.getSingleResult();
-        
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy_HH:mm:ss");
         String data = dateFormat.format((Date) resultado);
 
@@ -48,13 +41,8 @@ public class NotaFiscalJPQL extends BaseTests {
     public void notaFiscalMaisRecente() {
         logger.info("Executando notaFiscalMaisRecente()");
         
-        Query query;
-        query = em.createQuery(
-                "SELECT MAX(n.dataEmissao) FROM NotaFiscal n"
-            );
-        
+        Query query = em.createQuery("SELECT MAX(n.dataEmissao) FROM NotaFiscal n");
         Object resultado = query.getSingleResult();
-        
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy_HH:mm:ss");
         String data = dateFormat.format((Date) resultado);
         
@@ -65,13 +53,10 @@ public class NotaFiscalJPQL extends BaseTests {
     public void mediaDeValorDeNotasFiscais() {
         logger.info("Executando mediaDeValorDeNotasFiscais()");
         
-        Query query;
-        query = em.createQuery(
-                "SELECT AVG(n.valor) FROM NotaFiscal n"
-            );
-        
+        Query query = em.createQuery("SELECT AVG(n.valor) FROM NotaFiscal n");
         Object resultado = query.getSingleResult();
         Double valueAverage = Double.valueOf(resultado.toString());
+        
         assertEquals(valueAverage, Double.valueOf(137.79));
     }
 
@@ -79,13 +64,10 @@ public class NotaFiscalJPQL extends BaseTests {
     public void quantidadeDeNotasFiscais() {
         logger.info("Executando quantidadeDeNotasFiscais()");
         
-        Query query;
-        query = em.createQuery(
-                "SELECT COUNT(n) FROM NotaFiscal n"
-            );
-        
+        Query query = em.createQuery("SELECT COUNT(n) FROM NotaFiscal n");
         Object resultado = query.getSingleResult();
         Integer quantidadeDeNotasFiscais = Integer.valueOf(resultado.toString());
+        
         assertEquals(quantidadeDeNotasFiscais, Integer.valueOf(4));
     }
     
@@ -93,13 +75,10 @@ public class NotaFiscalJPQL extends BaseTests {
     public void somaDeValoresDeNotasFiscais() {
         logger.info("Executando somaDeValoresDeNotasFiscais()");
         
-        Query query;
-        query = em.createQuery(
-                "SELECT SUM(n.valor) FROM NotaFiscal n"
-            );
-        
+        Query query = em.createQuery("SELECT SUM(n.valor) FROM NotaFiscal n");
         Object resultado = query.getSingleResult();
         Double somaDeValores = Double.valueOf(resultado.toString());
+        
         assertEquals(somaDeValores, Double.valueOf(551.16));
     }
     
@@ -126,13 +105,9 @@ public class NotaFiscalJPQL extends BaseTests {
     public void donoDeNotaFiscal() {
         logger.info("Executando donoDeNotaFiscal()");
         
-        TypedQuery<Usuario> query;
-        query = em.createQuery(
-                "SELECT d FROM NotaFiscal n JOIN n.donoDaNota d WHERE n.codigo = 1",
-                Usuario.class
-            );
-        
+        TypedQuery<Usuario> query = em.createQuery("SELECT d FROM NotaFiscal n JOIN n.donoDaNota d WHERE n.codigo = 1", Usuario.class);
         Usuario usuario = query.getSingleResult();
+        
         assertEquals(usuario.getNome(), "José Luiz");
     }
 }

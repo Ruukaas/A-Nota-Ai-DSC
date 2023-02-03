@@ -1,7 +1,6 @@
 package com.mycompany.dscproject.tests;
 
 import jakarta.persistence.Query;
-import jakarta.persistence.TypedQuery;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
