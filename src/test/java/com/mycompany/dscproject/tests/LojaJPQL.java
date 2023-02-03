@@ -12,8 +12,9 @@ public class LojaJPQL extends BaseTests {
         Produto produto = em.find(Produto.class, Long.valueOf(2));
         TypedQuery<Loja> query;
         query = em.createQuery(
-                "SELECT l FROM Loja l WHERE :produto MEMBER OF l.produtos",
-                Loja.class);
+                    "SELECT l FROM Loja l WHERE :produto MEMBER OF l.produtos",
+                    Loja.class
+                );
         query.setParameter("produto", produto);
         Loja loja = query.getSingleResult();
         assertEquals("Eletronic Arts", loja.getNome());
