@@ -2,6 +2,7 @@ package com.mycompany.dscproject.tests;
 
 import com.mycompany.dscproject.model.Loja;
 import com.mycompany.dscproject.model.Produto;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
@@ -52,5 +53,15 @@ public class LojaJPQL extends BaseTests {
         Long quantidadeDeLojas = query.getSingleResult();
         
         assertEquals(Long.valueOf(4), quantidadeDeLojas);
+    }
+    
+    @Test
+    public void lojasComMenosDe2Produtos() {
+        Query query = em.createQuery("SELECT c, COUNT(i) from Loja c, Produto i WHERE i MEMBER OF c.produtos GROUP BY c HAVING COUNT(i) < 2");
+
+        Object[] resultado = (Object []) query.getSingleResult();
+
+        assertEquals("Bar do Ceu", ((Loja) resultado[0]).getNome());
+
     }
 }
